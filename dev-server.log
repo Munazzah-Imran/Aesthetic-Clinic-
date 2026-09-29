@@ -1,0 +1,12 @@
+
+> nextjs-docker-postgres@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by process 11788, using available port 3002 instead.
+   ▲ Next.js 15.5.25
+   - Local:        http://localhost:3002
+   - Network:      http://172.23.144.1:3002
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 8.1s

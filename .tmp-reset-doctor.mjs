@@ -1,0 +1,10 @@
+import fs from "fs";
+import pg from "pg";
+const env = fs.readFileSync(".env", "utf8");
+const url = env.match(/^DATABASE_URL=(.*)$/m)[1].trim();
+const pool = new pg.Pool({ connectionString: url, ssl: { rejectUnauthorized: false } });
+const BID = "ab6a2799-4979-40ad-8c0d-f617ef8fe8ff";
+await pool.query("DELETE FROM doctor WHERE business_id = $1 AND full_name LIKE 'Dr. Test%'", [BID]);
+await pool.query("UPDATE doctor SET full_name = 'Munazzah Imran' WHERE business_id = $1", [BID]);
+console.log("reset done");
+await pool.end();

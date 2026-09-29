@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 240 48">
+  <path fill="#fff" d="M35.2 0 63 48H7.4L35.2 0Z" opacity=".9"/>
+  <text x="72" y="33" fill="currentColor" font-family="system-ui, sans-serif" font-size="24" font-weight="700">Next.js</text>
+</svg>

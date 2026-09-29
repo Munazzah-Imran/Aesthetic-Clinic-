@@ -1,0 +1,18 @@
+# Overlay for hot-reload development: docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+services:
+  app:
+    build:
+      # Reuse the deps stage (node_modules inside the image)
+      target: deps
+    command: npm run dev
+    environment:
+      NODE_ENV: development
+      # Reliable file watching when the project lives on a Windows drive mount
+      WATCHPACK_POLLING: "true"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      db:
+        condition: service_healthy

@@ -1,0 +1,110 @@
+
+> nextjs-docker-postgres@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
+   ▲ Next.js 15.5.25
+   - Local:        http://localhost:3001
+   - Network:      http://172.23.144.1:3001
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 12.5s
+ ○ Compiling /api/doctors ...
+ ✓ Compiled /api/doctors in 6.2s (383 modules)
+(node:15760) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ POST /api/doctors 201 in 9243ms
+ POST /api/doctors 201 in 648ms
+ ○ Compiling /api/doctors/[id] ...
+ ✓ Compiled /api/doctors/[id] in 2.4s (385 modules)
+ PATCH /api/doctors/5415d91b-dd08-48ff-b42c-bf9952ebfcea 200 in 7856ms
+ GET /api/doctors/a6d29d62-98b1-4c60-8154-27bbb81e73b2 200 in 333ms
+ ○ Compiling /api/doctors/[id]/profile ...
+ ✓ Compiled /api/doctors/[id]/profile in 1483ms (387 modules)
+PUT /api/doctors/[id]/profile failed: error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+    at async PUT (src\app\api\doctors\[id]\profile\route.ts:129:22)
+  127 |     const doctorId: string = doctor.id;
+  128 |
+> 129 |     const inserted = await pool.query<ProfileRow>(
+      |                      ^
+  130 |       `INSERT INTO doctor_profiles (
+  131 |          business_id, doctor_id, photo_url, full_name, professional_title, specialty,
+  132 |          experience, qualifications, additional_qualifications, short_bio, full_bio, {
+  length: 148,
+  severity: 'ERROR',
+  code: '42P10',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'plancat.c',
+  line: '958',
+  routine: 'infer_arbiter_indexes'
+}
+ PUT /api/doctors/5415d91b-dd08-48ff-b42c-bf9952ebfcea/profile 500 in 7767ms
+ GET /api/doctors/a6d29d62-98b1-4c60-8154-27bbb81e73b2/profile 200 in 993ms
+PUT /api/doctors/[id]/profile failed: error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+    at async PUT (src\app\api\doctors\[id]\profile\route.ts:129:22)
+  127 |     const doctorId: string = doctor.id;
+  128 |
+> 129 |     const inserted = await pool.query<ProfileRow>(
+      |                      ^
+  130 |       `INSERT INTO doctor_profiles (
+  131 |          business_id, doctor_id, photo_url, full_name, professional_title, specialty,
+  132 |          experience, qualifications, additional_qualifications, short_bio, full_bio, {
+  length: 148,
+  severity: 'ERROR',
+  code: '42P10',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'plancat.c',
+  line: '958',
+  routine: 'infer_arbiter_indexes'
+}
+ PUT /api/doctors/a6d29d62-98b1-4c60-8154-27bbb81e73b2/profile 500 in 604ms
+ GET /api/doctors/5415d91b-dd08-48ff-b42c-bf9952ebfcea/profile 200 in 975ms
+ POST /api/doctors 400 in 254ms
+ POST /api/doctors 400 in 235ms
+ POST /api/doctors 400 in 229ms
+ POST /api/doctors 400 in 224ms
+ POST /api/doctors 400 in 195ms
+ GET /api/doctors/5415d91b-dd08-48ff-b42c-bf9952ebfcea/profile 404 in 242ms
+ PUT /api/doctors/5415d91b-dd08-48ff-b42c-bf9952ebfcea/profile 404 in 331ms
+ GET /api/doctors/5415d91b-dd08-48ff-b42c-bf9952ebfcea 404 in 364ms
+ DELETE /api/doctors/5415d91b-dd08-48ff-b42c-bf9952ebfcea 200 in 251ms
+ DELETE /api/doctors/a6d29d62-98b1-4c60-8154-27bbb81e73b2 200 in 244ms
+ ✓ Compiled in 866ms (192 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 11.3s (705 modules)
+ POST /api/doctors 404 in 14234ms
+ POST /api/doctors 404 in 568ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\aesthetic clinic\.next\cache\webpack\client-development\2.pack.gz_' -> 'D:\aesthetic clinic\.next\cache\webpack\client-development\2.pack.gz'
+ POST /api/doctors 404 in 391ms
+ POST /api/doctors 404 in 262ms
+ POST /api/doctors 404 in 248ms
+ POST /api/doctors 404 in 260ms
+ POST /api/doctors 404 in 493ms
