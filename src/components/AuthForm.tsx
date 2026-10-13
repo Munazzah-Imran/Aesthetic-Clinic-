@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import PasswordInput from "@/components/PasswordInput";
 
 type AuthResponse = {
   data: {
@@ -220,9 +221,8 @@ export default function AuthForm() {
                 Forgot password?
               </a>
             </div>
-            <input
+            <PasswordInput
               className="auth-input"
-              type="password"
               id="login-password"
               name="password"
               placeholder="••••••••"
@@ -298,9 +298,8 @@ export default function AuthForm() {
             <label className="auth-label" htmlFor="signup-password">
               Password
             </label>
-            <input
+            <PasswordInput
               className="auth-input"
-              type="password"
               id="signup-password"
               name="password"
               placeholder="••••••••"
@@ -314,9 +313,8 @@ export default function AuthForm() {
             <label className="auth-label" htmlFor="signup-confirm-password">
               Confirm Password
             </label>
-            <input
+            <PasswordInput
               className="auth-input"
-              type="password"
               id="signup-confirm-password"
               name="confirmPassword"
               placeholder="••••••••"

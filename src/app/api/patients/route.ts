@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission, PATIENT_READERS } from "@/lib/rbac";
 import { validatePatient } from "@/lib/patientValidation";
 import { withSequentialId } from "@/lib/sequentialId";
 
@@ -50,7 +50,7 @@ function envelope(
 
 export async function GET(request: Request) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, PATIENT_READERS);
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }
@@ -79,7 +79,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "patients");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }

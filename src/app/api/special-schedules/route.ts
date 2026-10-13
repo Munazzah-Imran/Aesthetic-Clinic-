@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission } from "@/lib/rbac";
 import {
   validateSpecialSchedule,
   type ClinicSpecialSchedule,
@@ -61,7 +61,7 @@ function conflict(message: string, field: "specialDate") {
  */
 export async function GET(request: Request) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "special_schedules");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }
@@ -105,7 +105,7 @@ export async function GET(request: Request) {
  */
 export async function POST(request: Request) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "special_schedules");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }

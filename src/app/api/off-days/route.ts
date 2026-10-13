@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission } from "@/lib/rbac";
 import { validateOffDay, type ClinicOffDay } from "@/lib/offDays";
 import { ensureClinicOffDayTable, loadOffDaysByClinic } from "@/lib/offDaysDb";
 import { ensureClinicSpecialScheduleTable } from "@/lib/specialSchedulesDb";
@@ -39,7 +39,7 @@ function envelope(
  */
 export async function GET(request: Request) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "off_days");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }
@@ -76,7 +76,7 @@ export async function GET(request: Request) {
  */
 export async function POST(request: Request) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "off_days");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }

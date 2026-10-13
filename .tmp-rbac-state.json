@@ -1,0 +1,16 @@
+{
+  "stamp": 1791754342296,
+  "ownerEmail": "rbac-owner-1791754342296@example.com",
+  "ownerPassword": "Owner-1791754342296-Pass",
+  "ownerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjExMCwiZW1haWwiOiJyYmFjLW93bmVyLTE3OTE3NTQzNDIyOTZAZXhhbXBsZS5jb20iLCJidXNpbmVzc0lkIjoiMzRkYjlkZDItMGQ5NS00Y2I3LWFjNTItOTI5MGMyMjc4ZDgyIiwiaWF0IjoxNzkxNzU0MzQ2LCJleHAiOjE3OTIzNTkxNDZ9.h5oH6TfXfQWi58TSS_V3PIDRndOnxyyDAtqpbnKvtJ4",
+  "staffEmail": "rbac-talha-1791754342296@example.com",
+  "staffPassword": "NewSecure-1791754342296-Pass",
+  "staffToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjExMiwiZW1haWwiOiJyYmFjLXRhbGhhLTE3OTE3NTQzNDIyOTZAZXhhbXBsZS5jb20iLCJidXNpbmVzc0lkIjoiMzRkYjlkZDItMGQ5NS00Y2I3LWFjNTItOTI5MGMyMjc4ZDgyIiwiaWF0IjoxNzkxNzU0NDE0LCJleHAiOjE3OTIzNTkyMTR9.uqicgYr7Q0bCSOYDyt86ZcYY67XYP4LnDNV8WmSVsiM",
+  "staffId": "d6432044-94c1-4ed8-ab86-d80fec5b40e3",
+  "viewerEmail": "rbac-viewer-1791754342296@example.com",
+  "viewerPassword": "NewSecure-1791754342296-Pass",
+  "viewerToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjExNCwiZW1haWwiOiJyYmFjLXZpZXdlci0xNzkxNzU0MzQyMjk2QGV4YW1wbGUuY29tIiwiYnVzaW5lc3NJZCI6IjM0ZGI5ZGQyLTBkOTUtNGNiNy1hYzUyLTkyOTBjMjI3OGQ4MiIsImlhdCI6MTc5MTc1NDM5OSwiZXhwIjoxNzkyMzU5MTk5fQ.7_7vQ08E-JFtFoWUUysSBhPMC8h2e7IGCbH0puzdcuM",
+  "businessName": "RBAC Test Clinic 1791754342296",
+  "otherBusinessName": "RBAC Other Clinic 1791754342296",
+  "otherOwnerEmail": "rbac-other-1791754342296@example.com"
+}

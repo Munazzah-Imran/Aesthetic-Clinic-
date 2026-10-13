@@ -1,0 +1,176 @@
+
+> nextjs-docker-postgres@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.25
+   - Local:        http://localhost:3000
+   - Network:      http://172.26.0.1:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 10.2s
+ ○ Compiling /login ...
+ ✓ Compiled /login in 12.2s (625 modules)
+ GET /login 200 in 14662ms
+ GET /login 200 in 414ms
+ ○ Compiling /api/staff ...
+ ✓ Compiled /api/staff in 4.4s (723 modules)
+(node:5176) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ GET /api/staff 200 in 8014ms
+ POST /api/staff 400 in 263ms
+ POST /api/staff 400 in 247ms
+ POST /api/staff 400 in 250ms
+ POST /api/staff 400 in 260ms
+ POST /api/staff 201 in 3657ms
+ ○ Compiling /api/staff/[id]/permissions ...
+ ✓ Compiled /api/staff/[id]/permissions in 1027ms (711 modules)
+ PUT /api/staff/3ac47883-0980-4c56-8f48-424dac5db82d/permissions 400 in 6715ms
+ PUT /api/staff/3ac47883-0980-4c56-8f48-424dac5db82d/permissions 400 in 674ms
+ ○ Compiling /api/staff/[id] ...
+ ✓ Compiled /api/staff/[id] in 1460ms (713 modules)
+ PATCH /api/staff/3ac47883-0980-4c56-8f48-424dac5db82d 400 in 7324ms
+ PUT /api/staff/3ac47883-0980-4c56-8f48-424dac5db82d/permissions 200 in 1997ms
+ DELETE /api/staff/not-a-uuid 400 in 563ms
+ DELETE /api/staff/00000000-0000-0000-0000-000000000000 404 in 661ms
+ POST /api/staff 201 in 4380ms
+ DELETE /api/staff/f2ef36c1-012b-454f-9957-a3913624b713 403 in 383ms
+ ○ Compiling /api/auth/login ...
+ ✓ Compiled /api/auth/login in 863ms (715 modules)
+ POST /api/auth/login 200 in 2122ms
+ ○ Compiling /api/auth/me ...
+ ✓ Compiled /api/auth/me in 703ms (717 modules)
+ GET /api/auth/me 200 in 1731ms
+ DELETE /api/staff/f2ef36c1-012b-454f-9957-a3913624b713 400 in 549ms
+ DELETE /api/staff/40cb9b35-c7e0-4b32-b69d-0c8e1c99d485 403 in 770ms
+ DELETE /api/staff/40cb9b35-c7e0-4b32-b69d-0c8e1c99d485 400 in 841ms
+ GET /api/auth/me 200 in 256ms
+ DELETE /api/staff/f2ef36c1-012b-454f-9957-a3913624b713 200 in 1587ms
+ GET /api/auth/me 401 in 157ms
+ POST /api/auth/login 403 in 593ms
+ GET /api/staff 200 in 398ms
+ GET /api/staff/f2ef36c1-012b-454f-9957-a3913624b713 404 in 455ms
+ PATCH /api/staff/f2ef36c1-012b-454f-9957-a3913624b713 404 in 344ms
+ DELETE /api/staff/3ac47883-0980-4c56-8f48-424dac5db82d 200 in 1132ms
+ DELETE /api/staff/dbafd32f-ad82-4a29-a768-6216937320b0 200 in 1992ms
+ GET /login 200 in 931ms
+ ○ Compiling /dashboard/staff ...
+ ✓ Compiled /dashboard/staff in 3.2s (856 modules)
+ GET /dashboard/staff 200 in 4671ms
+ ○ Compiling /api/auth/permissions ...
+ ✓ Compiled /api/auth/permissions in 1127ms (858 modules)
+ GET /api/auth/permissions 200 in 2947ms
+ GET /api/auth/me 200 in 287ms
+ GET /api/auth/me 200 in 277ms
+ GET /api/staff 200 in 1330ms
+ GET /api/staff 200 in 368ms
+ POST /api/staff 201 in 8632ms
+ GET /api/staff 200 in 1323ms
+ GET /api/staff/ca519a47-5f2d-4568-8253-0ca9acd7c9ed 200 in 415ms
+ DELETE /api/staff/ca519a47-5f2d-4568-8253-0ca9acd7c9ed 200 in 1622ms
+ GET /api/staff 200 in 397ms
+ GET /login 200 in 482ms
+ GET /dashboard/staff 200 in 553ms
+ GET /api/auth/permissions 200 in 353ms
+ GET /api/auth/me 200 in 976ms
+ GET /api/auth/me 200 in 717ms
+ GET /api/staff 200 in 1361ms
+ GET /api/staff 200 in 434ms
+ POST /api/staff 201 in 2072ms
+ GET /api/staff 200 in 405ms
+ GET /api/staff/899207c0-7337-4cb9-bf4d-9bc31c5f9169 200 in 1345ms
+ PATCH /api/staff/899207c0-7337-4cb9-bf4d-9bc31c5f9169 200 in 2684ms
+ GET /api/staff 200 in 1688ms
+ GET /api/staff/899207c0-7337-4cb9-bf4d-9bc31c5f9169 200 in 2181ms
+ POST /api/staff 400 in 977ms
+ POST /api/staff 400 in 293ms
+ POST /api/staff 400 in 275ms
+ POST /api/staff 400 in 339ms
+ POST /api/staff 201 in 1737ms
+ PUT /api/staff/711cf582-11a3-4781-9503-038dd3a727b3/permissions 400 in 1913ms
+ PUT /api/staff/711cf582-11a3-4781-9503-038dd3a727b3/permissions 400 in 761ms
+ PATCH /api/staff/711cf582-11a3-4781-9503-038dd3a727b3 400 in 764ms
+ PUT /api/staff/711cf582-11a3-4781-9503-038dd3a727b3/permissions 200 in 1832ms
+ DELETE /api/staff/not-a-uuid 400 in 322ms
+ DELETE /api/staff/00000000-0000-0000-0000-000000000000 404 in 1125ms
+ POST /api/staff 201 in 1572ms
+ DELETE /api/staff/e6ef1f20-bb2b-4df2-8356-d4547815c8f7 403 in 737ms
+ POST /api/auth/login 200 in 620ms
+ GET /api/auth/me 200 in 311ms
+ DELETE /api/staff/e6ef1f20-bb2b-4df2-8356-d4547815c8f7 400 in 1112ms
+ DELETE /api/staff/7691cad2-fc74-404b-a7a9-39759e65a98c 403 in 686ms
+ DELETE /api/staff/7691cad2-fc74-404b-a7a9-39759e65a98c 400 in 670ms
+ GET /api/auth/me 200 in 276ms
+ DELETE /api/staff/e6ef1f20-bb2b-4df2-8356-d4547815c8f7 200 in 912ms
+ GET /api/auth/me 401 in 172ms
+ POST /api/auth/login 403 in 509ms
+ GET /api/staff 200 in 406ms
+ GET /api/staff/e6ef1f20-bb2b-4df2-8356-d4547815c8f7 404 in 367ms
+ PATCH /api/staff/e6ef1f20-bb2b-4df2-8356-d4547815c8f7 404 in 396ms
+ DELETE /api/staff/899207c0-7337-4cb9-bf4d-9bc31c5f9169 200 in 861ms
+ DELETE /api/staff/711cf582-11a3-4781-9503-038dd3a727b3 200 in 1217ms
+ GET /login 200 in 373ms
+ GET /dashboard/staff 200 in 429ms
+ GET /api/auth/permissions 200 in 1125ms
+ GET /api/auth/me 200 in 602ms
+ GET /api/auth/me 200 in 848ms
+ GET /api/staff 200 in 2300ms
+ GET /api/staff 200 in 523ms
+ POST /api/staff 201 in 3255ms
+ GET /api/staff 200 in 402ms
+ GET /api/staff/68712f1d-254d-491c-8ca2-cf9465cc74a8 200 in 1006ms
+ DELETE /api/staff/68712f1d-254d-491c-8ca2-cf9465cc74a8 200 in 938ms
+ GET /api/staff 200 in 481ms
+ GET /login 200 in 1018ms
+ GET /dashboard/staff 200 in 1129ms
+ GET /api/auth/permissions 200 in 6363ms
+ GET /api/auth/me 200 in 2513ms
+ GET /api/auth/me 200 in 416ms
+ GET /api/staff 200 in 2911ms
+ GET /api/staff 200 in 646ms
+ POST /api/staff 201 in 1673ms
+ GET /api/staff 200 in 456ms
+ GET /api/staff/de7d4311-7d32-4865-aca5-bd0c9e51f916 200 in 422ms
+ PATCH /api/staff/de7d4311-7d32-4865-aca5-bd0c9e51f916 200 in 2762ms
+ GET /api/staff 200 in 564ms
+ GET /api/staff/de7d4311-7d32-4865-aca5-bd0c9e51f916 200 in 466ms
+ ✓ Compiled in 7.5s (745 modules)
+ ✓ Compiled in 1204ms (310 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: EPERM: operation not permitted, rename 'D:\aesthetic clinic\.next\cache\webpack\server-development\15.pack.gz_' -> 'D:\aesthetic clinic\.next\cache\webpack\server-development\15.pack.gz'
+ ✓ Compiled in 1629ms (310 modules)
+ ✓ Compiled in 574ms (310 modules)
+ ✓ Compiled in 607ms (310 modules)
+ ✓ Compiled in 1165ms (310 modules)
+ ✓ Compiled in 490ms (310 modules)
+ ✓ Compiled in 1892ms (310 modules)
+ ✓ Compiled in 736ms (310 modules)
+ ✓ Compiled in 562ms (310 modules)
+ ✓ Compiled in 931ms (310 modules)
+ ✓ Compiled in 1593ms (310 modules)
+ ✓ Compiled in 987ms (310 modules)
+ ✓ Compiled in 653ms (310 modules)
+ ✓ Compiled in 1908ms (745 modules)
+ ✓ Compiled in 767ms (310 modules)
+ ✓ Compiled in 549ms (310 modules)
+ ✓ Compiled in 521ms (310 modules)
+ ✓ Compiled in 626ms (310 modules)
+ ✓ Compiled in 482ms (310 modules)
+ ✓ Compiled in 907ms (310 modules)
+ ✓ Compiled in 1763ms (745 modules)
+ ✓ Compiled in 1168ms (310 modules)
+ ✓ Compiled in 1632ms (310 modules)
+ ✓ Compiled in 878ms (310 modules)
+ ✓ Compiled in 896ms (310 modules)
+ ✓ Compiled in 404ms (310 modules)
+ ✓ Compiled in 602ms (310 modules)
+ ✓ Compiled in 565ms (310 modules)
+ ✓ Compiled in 749ms (310 modules)
+ ✓ Compiled in 852ms (310 modules)
+[?25h

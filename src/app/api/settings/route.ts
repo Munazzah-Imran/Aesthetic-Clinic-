@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission, SETTINGS_READERS } from "@/lib/rbac";
 import {
   validateBusinessSettings,
   validateSettings,
@@ -84,7 +84,7 @@ async function loadBusinessId(userId: number): Promise<string | null> {
 
 export async function GET(request: Request) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, SETTINGS_READERS);
     if (!auth.ok) return fail(auth.status, auth.message);
 
     const businessId = await loadBusinessId(auth.user.id);
@@ -125,7 +125,7 @@ export async function GET(request: Request) {
 
 export async function PATCH(request: Request) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "settings");
     if (!auth.ok) return fail(auth.status, auth.message);
 
     const businessId = await loadBusinessId(auth.user.id);

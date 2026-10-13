@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission, PATIENT_READERS } from "@/lib/rbac";
 import { validatePatient } from "@/lib/patientValidation";
 
 export const dynamic = "force-dynamic";
@@ -50,7 +50,7 @@ async function loadOwnedPatient(id: string, businessId: string) {
 
 export async function GET(request: Request, context: RouteContext) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, PATIENT_READERS);
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }
@@ -73,7 +73,7 @@ export async function GET(request: Request, context: RouteContext) {
 
 export async function PATCH(request: Request, context: RouteContext) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "patients");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }
@@ -169,7 +169,7 @@ export async function PATCH(request: Request, context: RouteContext) {
 
 export async function DELETE(request: Request, context: RouteContext) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "patients");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }

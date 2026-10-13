@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import pool from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
+import { clearMustChangePassword } from "@/lib/staffDb";
 import { validatePasswordChange } from "@/lib/settingsValidation";
 
 export const dynamic = "force-dynamic";
@@ -93,6 +94,11 @@ export async function PATCH(request: Request) {
       auth.user.id,
       hash,
     ]);
+
+    // First-login password change complete: lift the forced-change gate so
+    // the staff member's dashboard access is restored (no-op for users
+    // without a staff membership, e.g. the admin/owner).
+    await clearMustChangePassword(auth.user.id);
 
     return NextResponse.json({
       data: null,

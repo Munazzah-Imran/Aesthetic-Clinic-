@@ -1,0 +1,485 @@
+
+> nextjs-docker-postgres@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.25
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.6:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 24.8s
+ ○ Compiling /login ...
+ ✓ Compiled /login in 16.4s (612 modules)
+ GET /login 200 in 20466ms
+ GET /login 200 in 457ms
+ ○ Compiling /api/auth/signup ...
+ ✓ Compiled /api/auth/signup in 9.2s (350 modules)
+(node:10232) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ POST /api/auth/signup 201 in 15485ms
+ ○ Compiling /api/auth/login ...
+ ✓ Compiled /api/auth/login in 6.5s (421 modules)
+ POST /api/auth/login 200 in 9697ms
+ POST /api/auth/signup 201 in 1602ms
+ POST /api/auth/login 200 in 1086ms
+ ○ Compiling /api/auth/permissions ...
+ ✓ Compiled /api/auth/permissions in 2.8s (426 modules)
+ GET /api/auth/permissions 200 in 4133ms
+ ○ Compiling /api/staff ...
+ ✓ Compiled /api/staff in 2.3s (429 modules)
+ GET /api/staff 200 in 3810ms
+ POST /api/staff 400 in 448ms
+ POST /api/staff 201 in 4022ms
+ POST /api/staff 409 in 1385ms
+ ○ Compiling /api/staff/[id]/permissions ...
+ ✓ Compiled /api/staff/[id]/permissions in 2.7s (431 modules)
+ GET /api/staff/e2c04965-db5c-460c-af63-c58ce05e01b4/permissions 200 in 10227ms
+ POST /api/staff 201 in 3887ms
+ POST /api/auth/login 200 in 866ms
+ GET /api/auth/permissions 200 in 424ms
+ ○ Compiling /api/patients ...
+ ✓ Compiled /api/patients in 2s (434 modules)
+ GET /api/patients 403 in 4400ms
+ ○ Compiling /api/password ...
+ ✓ Compiled /api/password in 3s (437 modules)
+ PATCH /api/password 400 in 5131ms
+ PATCH /api/password 200 in 1996ms
+ POST /api/auth/login 401 in 1111ms
+ POST /api/auth/login 200 in 478ms
+ GET /api/auth/permissions 200 in 433ms
+ ○ Compiling /api/dashboard ...
+ ✓ Compiled /api/dashboard in 2.3s (440 modules)
+ GET /api/dashboard 200 in 4508ms
+ ○ Compiling /api/doctors ...
+ ✓ Compiled /api/doctors in 1453ms (443 modules)
+ GET /api/doctors 200 in 2858ms
+ ○ Compiling /api/clinics ...
+ ✓ Compiled /api/clinics in 3.6s (448 modules)
+ GET /api/clinics 200 in 5664ms
+ GET /api/patients 403 in 566ms
+ ○ Compiling /api/appointments ...
+ ✓ Compiled /api/appointments in 2.5s (453 modules)
+ GET /api/appointments 403 in 4140ms
+ ○ Compiling /api/services ...
+ ✓ Compiled /api/services in 4.2s (457 modules)
+ GET /api/services 403 in 5761ms
+ ○ Compiling /api/settings ...
+ ✓ Compiled /api/settings in 2.4s (459 modules)
+ GET /api/settings 403 in 3712ms
+ GET /api/staff 403 in 461ms
+ ○ Compiling /api/reports ...
+ ✓ Compiled /api/reports in 2.3s (461 modules)
+ GET /api/reports 403 in 3672ms
+ ○ Compiling /api/virtual-consultations ...
+ ✓ Compiled /api/virtual-consultations in 3s (465 modules)
+ GET /api/virtual-consultations 403 in 4607ms
+ ○ Compiling /api/emergency-alerts ...
+ ✓ Compiled /api/emergency-alerts in 3.7s (483 modules)
+ ✓ Compiled in 1383ms (243 modules)
+ GET /api/emergency-alerts 403 in 5630ms
+ ○ Compiling /api/staff-messages ...
+ ✓ Compiled /api/staff-messages in 3.9s (473 modules)
+ GET /api/staff-messages 403 in 5154ms
+ ○ Compiling /api/off-days ...
+ ✓ Compiled /api/off-days in 2.7s (477 modules)
+ GET /api/off-days 403 in 3940ms
+ ○ Compiling /api/weekly-schedule ...
+ ✓ Compiled /api/weekly-schedule in 2.6s (479 modules)
+ GET /api/weekly-schedule 403 in 3902ms
+ ○ Compiling /api/blocked-slots ...
+ ✓ Compiled /api/blocked-slots in 3.1s (496 modules)
+ ✓ Compiled in 1499ms (243 modules)
+ GET /api/blocked-slots 403 in 5344ms
+ ○ Compiling /api/special-schedules ...
+ ✓ Compiled /api/special-schedules in 2.4s (481 modules)
+ GET /api/special-schedules 403 in 3646ms
+ POST /api/doctors 400 in 815ms
+ POST /api/clinics 400 in 435ms
+ GET /api/staff 401 in 118ms
+ GET /api/staff 401 in 109ms
+ POST /api/auth/login 200 in 689ms
+ ○ Compiling /api/password ...
+ ✓ Compiled /api/password in 1284ms (250 modules)
+ PATCH /api/password 200 in 3541ms
+ POST /api/auth/login 200 in 716ms
+ GET /api/staff 200 in 932ms
+ POST /api/staff 403 in 463ms
+ ○ Compiling /api/staff/[id]/permissions ...
+ ✓ Compiled /api/staff/[id]/permissions in 1072ms (252 modules)
+ PUT /api/staff/e2c04965-db5c-460c-af63-c58ce05e01b4/permissions 403 in 2498ms
+ PUT /api/staff/28a42c6f-33c9-4a34-aaaa-19f4d7cc3167/permissions 403 in 960ms
+ ○ Compiling /api/staff/[id] ...
+ ✓ Compiled /api/staff/[id] in 3.8s (483 modules)
+ PATCH /api/staff/e2c04965-db5c-460c-af63-c58ce05e01b4 403 in 12656ms
+ PATCH /api/staff/28a42c6f-33c9-4a34-aaaa-19f4d7cc3167 403 in 500ms
+ ○ Compiling /api/auth/me ...
+ ✓ Compiled /api/auth/me in 4s (472 modules)
+ GET /api/auth/me 200 in 5334ms
+ PATCH /api/staff/00000000-0000-0000-0000-000000000000 404 in 1580ms
+ PUT /api/staff/e2c04965-db5c-460c-af63-c58ce05e01b4/permissions 200 in 1663ms
+ ○ Compiling /api/appointments ...
+ ✓ Compiled /api/appointments in 2.1s (243 modules)
+ GET /api/appointments 200 in 3891ms
+ PUT /api/staff/e2c04965-db5c-460c-af63-c58ce05e01b4/permissions 200 in 1461ms
+ ○ Compiling /api/dashboard ...
+ ✓ Compiled /api/dashboard in 1764ms (245 modules)
+ GET /api/dashboard 403 in 3412ms
+ GET /api/doctors 200 in 773ms
+ PUT /api/staff/e2c04965-db5c-460c-af63-c58ce05e01b4/permissions 400 in 615ms
+ PATCH /api/staff/e2c04965-db5c-460c-af63-c58ce05e01b4 200 in 1190ms
+ GET /api/clinics 401 in 322ms
+ GET /api/auth/me 200 in 354ms
+ POST /api/auth/login 403 in 958ms
+ PATCH /api/staff/e2c04965-db5c-460c-af63-c58ce05e01b4 200 in 1345ms
+ POST /api/auth/login 200 in 866ms
+ ○ Compiling /api/auth/permissions ...
+ ✓ Compiled /api/auth/permissions in 1683ms (233 modules)
+ GET /api/auth/permissions 200 in 3131ms
+ GET /api/staff 200 in 971ms
+ GET /api/staff/e2c04965-db5c-460c-af63-c58ce05e01b4 404 in 515ms
+ GET /api/staff/e2c04965-db5c-460c-af63-c58ce05e01b4/permissions 404 in 641ms
+ PUT /api/staff/e2c04965-db5c-460c-af63-c58ce05e01b4/permissions 404 in 554ms
+ PATCH /api/staff/e2c04965-db5c-460c-af63-c58ce05e01b4 404 in 1102ms
+ GET /api/dashboard 200 in 1552ms
+ ○ Compiling /api/patients ...
+ ✓ Compiled /api/patients in 2.7s (231 modules)
+ GET /api/patients 200 in 5066ms
+ GET /api/appointments 200 in 909ms
+ GET /api/doctors 200 in 721ms
+ GET /api/clinics 200 in 1141ms
+ ○ Compiling /api/services ...
+ ✓ Compiled /api/services in 1734ms (235 modules)
+ GET /api/services 200 in 3624ms
+ ○ Compiling /api/settings ...
+ ✓ Compiled /api/settings in 1099ms (237 modules)
+ GET /api/settings 200 in 2431ms
+ GET /api/staff 200 in 638ms
+ ○ Compiling /api/reports ...
+ ✓ Compiled /api/reports in 1397ms (234 modules)
+ GET /api/reports 200 in 5567ms
+ ○ Compiling /api/staff-messages ...
+ ✓ Compiled /api/staff-messages in 834ms (238 modules)
+ GET /api/staff-messages 200 in 1865ms
+ POST /api/staff 409 in 3135ms
+ ✓ Compiled in 2.1s (243 modules)
+ ✓ Compiled in 629ms (243 modules)
+ ○ Compiling /api/auth/signup ...
+ ✓ Compiled /api/auth/signup in 755ms (107 modules)
+ POST /api/auth/signup 201 in 2752ms
+ ✓ Compiled /api/auth/login in 248ms (192 modules)
+ POST /api/auth/login 200 in 1453ms
+ POST /api/auth/signup 201 in 937ms
+ POST /api/auth/login 200 in 639ms
+ ✓ Compiled /api/auth/permissions in 480ms (197 modules)
+ GET /api/auth/permissions 200 in 1466ms
+ ✓ Compiled /api/staff in 327ms (200 modules)
+ GET /api/staff 200 in 1226ms
+ POST /api/staff 400 in 279ms
+ POST /api/staff 201 in 3351ms
+ POST /api/staff 409 in 1078ms
+ ✓ Compiled /api/staff/[id]/permissions in 329ms (202 modules)
+ GET /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3/permissions 200 in 1445ms
+ POST /api/staff 201 in 3270ms
+ POST /api/auth/login 200 in 447ms
+ GET /api/auth/permissions 200 in 400ms
+ ✓ Compiled /api/patients in 432ms (205 modules)
+ GET /api/patients 403 in 1193ms
+ ○ Compiling /api/password ...
+ ✓ Compiled /api/password in 1175ms (208 modules)
+ PATCH /api/password 400 in 2929ms
+ PATCH /api/password 200 in 1264ms
+ POST /api/auth/login 401 in 345ms
+ POST /api/auth/login 200 in 418ms
+ GET /api/auth/permissions 200 in 366ms
+ ○ Compiling /api/dashboard ...
+ ✓ Compiled /api/dashboard in 785ms (211 modules)
+ GET /api/dashboard 200 in 2741ms
+ ○ Compiling /api/doctors ...
+ ✓ Compiled /api/doctors in 643ms (214 modules)
+ GET /api/doctors 200 in 1868ms
+ ○ Compiling /api/clinics ...
+ ✓ Compiled /api/clinics in 548ms (219 modules)
+ GET /api/clinics 200 in 1645ms
+ GET /api/patients 403 in 422ms
+ ○ Compiling /api/appointments ...
+ ✓ Compiled /api/appointments in 796ms (224 modules)
+ GET /api/appointments 403 in 1831ms
+ ○ Compiling /api/services ...
+ ✓ Compiled /api/services in 1072ms (228 modules)
+ GET /api/services 403 in 2155ms
+ ○ Compiling /api/settings ...
+ ✓ Compiled /api/settings in 732ms (230 modules)
+ GET /api/settings 403 in 2029ms
+ GET /api/staff 403 in 442ms
+ ○ Compiling /api/reports ...
+ ✓ Compiled /api/reports in 768ms (234 modules)
+ GET /api/reports 403 in 1755ms
+ ○ Compiling /api/virtual-consultations ...
+ ✓ Compiled /api/virtual-consultations in 1353ms (238 modules)
+ GET /api/virtual-consultations 403 in 2384ms
+ ○ Compiling /api/emergency-alerts ...
+ ✓ Compiled /api/emergency-alerts in 542ms (242 modules)
+ GET /api/emergency-alerts 403 in 1515ms
+ ○ Compiling /api/staff-messages ...
+ ✓ Compiled /api/staff-messages in 666ms (246 modules)
+ GET /api/staff-messages 403 in 1615ms
+ ○ Compiling /api/off-days ...
+ ✓ Compiled /api/off-days in 999ms (250 modules)
+ GET /api/off-days 403 in 1995ms
+ ○ Compiling /api/weekly-schedule ...
+ ✓ Compiled /api/weekly-schedule in 886ms (252 modules)
+ GET /api/weekly-schedule 403 in 1854ms
+ ○ Compiling /api/blocked-slots ...
+ ✓ Compiled /api/blocked-slots in 613ms (255 modules)
+ GET /api/blocked-slots 403 in 1869ms
+ ○ Compiling /api/special-schedules ...
+ ✓ Compiled /api/special-schedules in 626ms (258 modules)
+ GET /api/special-schedules 403 in 1731ms
+ POST /api/patients 403 in 409ms
+ POST /api/appointments 403 in 414ms
+ POST /api/doctors 400 in 407ms
+ GET /api/staff 401 in 63ms
+ GET /api/staff 401 in 56ms
+ POST /api/auth/login 200 in 464ms
+ PATCH /api/password 200 in 944ms
+ POST /api/auth/login 200 in 454ms
+ GET /api/staff 200 in 499ms
+ POST /api/staff 403 in 387ms
+ PUT /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3/permissions 403 in 458ms
+ PUT /api/staff/bb719e66-111f-4f00-9316-974f2c860d07/permissions 403 in 437ms
+ ○ Compiling /api/staff/[id] ...
+ ✓ Compiled /api/staff/[id] in 962ms (260 modules)
+ PATCH /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3 403 in 2708ms
+ PATCH /api/staff/bb719e66-111f-4f00-9316-974f2c860d07 403 in 762ms
+ ○ Compiling /api/auth/me ...
+ ✓ Compiled /api/auth/me in 1030ms (262 modules)
+ GET /api/auth/me 200 in 2029ms
+ PATCH /api/staff/00000000-0000-0000-0000-000000000000 404 in 433ms
+ PUT /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3/permissions 200 in 1136ms
+ GET /api/appointments 200 in 553ms
+ PUT /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3/permissions 200 in 1126ms
+ GET /api/dashboard 403 in 424ms
+ GET /api/doctors 200 in 560ms
+ PUT /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3/permissions 400 in 402ms
+ PATCH /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3 200 in 1033ms
+ GET /api/clinics 401 in 216ms
+ GET /api/auth/me 401 in 182ms
+ POST /api/auth/login 403 in 600ms
+ PATCH /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3 200 in 1002ms
+ POST /api/auth/login 200 in 444ms
+ GET /api/auth/permissions 200 in 484ms
+ GET /api/staff 200 in 424ms
+ GET /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3 404 in 436ms
+ GET /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3/permissions 404 in 470ms
+ PUT /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3/permissions 404 in 819ms
+ PATCH /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3 404 in 436ms
+ GET /api/dashboard 200 in 1207ms
+ GET /api/patients 200 in 476ms
+ GET /api/appointments 200 in 411ms
+ GET /api/doctors 200 in 491ms
+ GET /api/clinics 200 in 427ms
+ GET /api/services 200 in 761ms
+ GET /api/settings 200 in 526ms
+ GET /api/staff 200 in 386ms
+ GET /api/reports 200 in 3271ms
+ GET /api/staff-messages 200 in 403ms
+ POST /api/staff 409 in 3175ms
+ ✓ Compiled in 1080ms (243 modules)
+ GET /api/staff 200 in 2664ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 4.9s (715 modules)
+ GET /api/staff-messages?filter=all 404 in 7129ms
+ GET /api/staff-messages 200 in 1456ms
+ GET /api/staff-messages?filter=inbox 200 in 323ms
+ ○ Compiling /api/staff ...
+ ✓ Compiled /api/staff in 697ms (476 modules)
+ GET /api/staff 200 in 1731ms
+ ✓ Compiled in 1333ms (243 modules)
+ ○ Compiling /login ...
+ ✓ Compiled /login in 1923ms (370 modules)
+ GET /login 200 in 2955ms
+ ○ Compiling /dashboard/staff ...
+ ✓ Compiled /dashboard/staff in 7.2s (734 modules)
+ GET /dashboard/staff 200 in 8443ms
+ ○ Compiling /api/auth/permissions ...
+ ✓ Compiled /api/auth/permissions in 1061ms (548 modules)
+ GET /api/auth/permissions 200 in 3053ms
+ ○ Compiling /api/auth/me ...
+ ✓ Compiled /api/auth/me in 2s (550 modules)
+ GET /api/auth/me 200 in 3700ms
+ GET /api/auth/me 200 in 457ms
+ ○ Compiling /api/staff ...
+ ✓ Compiled /api/staff in 1545ms (554 modules)
+ GET /api/staff 200 in 3522ms
+ GET /api/staff 200 in 466ms
+ POST /api/staff 201 in 3147ms
+ GET /api/staff 200 in 419ms
+ ○ Compiling /dashboard/staff-inbox ...
+ ✓ Compiled /dashboard/staff-inbox in 1562ms (875 modules)
+ GET /dashboard/staff-inbox 200 in 2568ms
+ GET /api/auth/permissions 200 in 800ms
+ GET /api/auth/me 200 in 421ms
+ GET /api/auth/me 200 in 293ms
+ GET /login 200 in 340ms
+ GET /dashboard/staff 200 in 446ms
+ GET /api/auth/permissions 200 in 1617ms
+ GET /api/auth/me 200 in 278ms
+ GET /api/auth/me 200 in 307ms
+ GET /api/staff 200 in 1145ms
+ GET /api/staff 200 in 445ms
+ ○ Compiling /api/staff/[id] ...
+ ✓ Compiled /api/staff/[id] in 2.6s (571 modules)
+ ⨯ Failed to generate static paths for /api/staff/[id]:
+[Error: Jest worker encountered 2 child process exceptions, exceeding retry limit] {
+  type: 'WorkerError'
+}
+ GET /api/staff/172076fd-ba5c-4aa2-b998-dba99e21a1ee 200 in 3960ms
+ ⨯ [Error: Jest worker encountered 2 child process exceptions, exceeding retry limit] {
+  type: 'WorkerError',
+  page: '/api/staff/172076fd-ba5c-4aa2-b998-dba99e21a1ee'
+}
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ○ Compiling /_error ...
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ✓ Compiled /_error in 12.9s (1224 modules)
+ GET /dashboard/staff 200 in 13725ms
+ GET /api/staff/172076fd-ba5c-4aa2-b998-dba99e21a1ee 500 in 19676ms
+ GET /login 200 in 10854ms
+ GET /dashboard/staff 200 in 594ms
+ GET /api/auth/permissions 200 in 1035ms
+ GET /api/auth/me 200 in 347ms
+ GET /api/auth/me 200 in 381ms
+ GET /api/staff 200 in 1425ms
+ GET /api/staff 200 in 575ms
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ GET /api/staff 200 in 960ms
+ ⨯ [Error: Jest worker encountered 2 child process exceptions, exceeding retry limit] {
+  type: 'WorkerError',
+  page: '/api/staff/172076fd-ba5c-4aa2-b998-dba99e21a1ee'
+}
+ GET /api/staff/172076fd-ba5c-4aa2-b998-dba99e21a1ee 500 in 472ms
+ ⨯ [Error: Jest worker encountered 2 child process exceptions, exceeding retry limit] {
+  type: 'WorkerError',
+  page: '/api/staff/bb719e66-111f-4f00-9316-974f2c860d07'
+}
+ GET /api/staff/bb719e66-111f-4f00-9316-974f2c860d07 500 in 606ms
+ ⨯ [Error: Jest worker encountered 2 child process exceptions, exceeding retry limit] {
+  type: 'WorkerError',
+  page: '/api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3'
+}
+ GET /api/staff/d6432044-94c1-4ed8-ab86-d80fec5b40e3 500 in 706ms
+ ⨯ [Error: Jest worker encountered 2 child process exceptions, exceeding retry limit] {
+  type: 'WorkerError',
+  page: '/api/staff/bb719e66-111f-4f00-9316-974f2c860d07'
+}
+ GET /api/staff/bb719e66-111f-4f00-9316-974f2c860d07 500 in 641ms
+ ○ Compiling /api/staff/[id]/permissions ...
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ✓ Compiled /api/staff/[id]/permissions in 4.9s (753 modules)
+ ⨯ Failed to generate static paths for /api/staff/[id]/permissions:
+[Error: Jest worker encountered 2 child process exceptions, exceeding retry limit] {
+  type: 'WorkerError'
+}
+ GET /api/staff/bb719e66-111f-4f00-9316-974f2c860d07/permissions 200 in 8108ms
+ ⨯ [Error: Jest worker encountered 2 child process exceptions, exceeding retry limit] {
+  type: 'WorkerError',
+  page: '/api/staff/not-a-uuid'
+}
+ GET /api/staff/not-a-uuid 500 in 2419ms
+ ○ Compiling /api/staff-messages/[id] ...
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ✓ Compiled /api/staff-messages/[id] in 11.3s (1216 modules)
+ ⨯ [Error: Jest worker encountered 2 child process exceptions, exceeding retry limit] {
+  type: 'WorkerError',
+  page: '/api/staff-messages/bb719e66-111f-4f00-9316-974f2c860d07'
+}
+ GET /api/staff-messages/bb719e66-111f-4f00-9316-974f2c860d07 500 in 14143ms
+ ○ Compiling /api/patients/[id] ...
+ ✓ Compiled /api/patients/[id] in 10.1s (1219 modules)
+ ⨯ [Error: Jest worker encountered 2 child process exceptions, exceeding retry limit] {
+  type: 'WorkerError',
+  page: '/api/patients/1'
+}
+ GET /api/patients/1 500 in 12424ms
+ ○ Compiling /api/appointments/[id] ...
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ✓ Compiled /api/appointments/[id] in 12.9s (1226 modules)
+ ⨯ [Error: Jest worker encountered 2 child process exceptions, exceeding retry limit] {
+  type: 'WorkerError',
+  page: '/api/appointments/1'
+}
+ GET /api/appointments/1 500 in 15516ms
+ ○ Compiling /api/doctors/[id] ...
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ✓ Compiled /api/doctors/[id] in 89.6s (1228 modules)
+ ⨯ [Error: Jest worker encountered 2 child process exceptions, exceeding retry limit] {
+  type: 'WorkerError',
+  page: '/api/doctors/1'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 14.3s (1210 modules)
+[Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException: [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+ ⨯ uncaughtException:  [Error: write EPIPE] { errno: -4047, code: 'EPIPE', syscall: 'write' }
+[?25h

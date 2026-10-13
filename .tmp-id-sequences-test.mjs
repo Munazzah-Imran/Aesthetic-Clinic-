@@ -25,7 +25,8 @@ const pool = new pg.Pool({
   ssl: { rejectUnauthorized: false },
 });
 
-const B = "http://localhost:3010/api";
+const PORT = process.env.TEST_PORT || "3010";
+const B = `http://localhost:${PORT}/api`;
 
 const now = new Date();
 const pad = (n) => String(n).padStart(2, "0");

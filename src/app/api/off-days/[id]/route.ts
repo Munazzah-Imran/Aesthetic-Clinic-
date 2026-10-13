@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission } from "@/lib/rbac";
 import { ensureClinicOffDayTable } from "@/lib/offDaysDb";
 
 export const dynamic = "force-dynamic";
@@ -27,7 +27,7 @@ function fail(message: string, status: number) {
  */
 export async function DELETE(request: Request, { params }: Params) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "off_days");
     if (!auth.ok) {
       return fail(auth.message, auth.status);
     }

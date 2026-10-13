@@ -14,16 +14,12 @@ import {
   Clock3,
   Ban,
   HeartPulse,
-  FileImage,
-  Video,
-  Siren,
-  Inbox,
-  HandHelping,
   UsersRound,
   Bell,
-  ClipboardList,
   X,
 } from "lucide-react";
+import { usePermissions } from "@/lib/usePermissions";
+import type { PermissionKey } from "@/lib/permissions";
 
 export type SidebarUser = {
   name: string;
@@ -41,6 +37,8 @@ type NavEntry = {
   icon: React.ComponentType<{ size?: number; className?: string }>;
   href: string;
   exact?: boolean; // match only the exact pathname (used for /dashboard)
+  /** Permission key required to see + open this module (RBAC). */
+  permission: PermissionKey;
 };
 
 type NavSection = {
@@ -50,58 +48,70 @@ type NavSection = {
 
 /**
  * Sidebar structure (order fixed per design spec):
- *   MAIN → DOCTOR & CLINICS → PATIENT SERVICES → COMMUNICATION → MANAGEMENT
+ *   MAIN → DOCTOR & CLINICS → PATIENT SERVICES → MANAGEMENT
  */
 const SECTIONS: NavSection[] = [
   {
     heading: "MAIN",
     items: [
-      { label: "Overview", icon: LayoutDashboard, href: "/dashboard", exact: true },
-      { label: "Appointments", icon: CalendarDays, href: "/dashboard/appointments" },
-      { label: "Calendar", icon: Calendar, href: "/dashboard/calendar" },
-      { label: "Patients", icon: Users, href: "/dashboard/patients" },
+      { label: "Overview", icon: LayoutDashboard, href: "/dashboard", exact: true, permission: "overview" },
+      { label: "Appointments", icon: CalendarDays, href: "/dashboard/appointments", permission: "appointments" },
+      { label: "Calendar", icon: Calendar, href: "/dashboard/calendar", permission: "calendar" },
+      { label: "Patients", icon: Users, href: "/dashboard/patients", permission: "patients" },
     ],
   },
   {
     heading: "DOCTOR & CLINICS",
     items: [
-      { label: "Doctor Profile", icon: Stethoscope, href: "/dashboard/doctors" },
-      { label: "Clinics", icon: Building2, href: "/dashboard/clinics" },
-      { label: "Weekly Schedule", icon: CalendarClock, href: "/dashboard/weekly-schedule" },
-      { label: "Off-Days", icon: CalendarOff, href: "/dashboard/off-days" },
-      { label: "Special Schedules", icon: Clock3, href: "/dashboard/special-schedules" },
-      { label: "Blocked Slots", icon: Ban, href: "/dashboard/blocked-slots" },
+      { label: "Doctor Profile", icon: Stethoscope, href: "/dashboard/doctors", permission: "doctor_profile" },
+      { label: "Clinics", icon: Building2, href: "/dashboard/clinics", permission: "clinics" },
+      { label: "Weekly Schedule", icon: CalendarClock, href: "/dashboard/weekly-schedule", permission: "weekly_schedule" },
+      { label: "Off-Days", icon: CalendarOff, href: "/dashboard/off-days", permission: "off_days" },
+      { label: "Special Schedules", icon: Clock3, href: "/dashboard/special-schedules", permission: "special_schedules" },
+      { label: "Blocked Slots", icon: Ban, href: "/dashboard/blocked-slots", permission: "blocked_slots" },
     ],
   },
   {
     heading: "PATIENT SERVICES",
     items: [
-      { label: "Services / Treatments", icon: HeartPulse, href: "/dashboard/services" },
-      { label: "Uploaded Reports / Images", icon: FileImage, href: "/dashboard/reports" },
-      { label: "Virtual Consultation", icon: Video, href: "/dashboard/virtual-consultation" },
-      { label: "Emergency Alerts", icon: Siren, href: "/dashboard/emergency-alerts" },
-    ],
-  },
-  {
-    heading: "COMMUNICATION",
-    items: [
-      { label: "Staff Inbox", icon: Inbox, href: "/dashboard/staff-inbox" },
-      { label: "Human Handover", icon: HandHelping, href: "/dashboard/human-handover" },
+      { label: "Services / Treatments", icon: HeartPulse, href: "/dashboard/services", permission: "services" },
     ],
   },
   {
     heading: "MANAGEMENT",
     items: [
-      { label: "Staff", icon: UsersRound, href: "/dashboard/staff" },
-      { label: "Reminders", icon: Bell, href: "/dashboard/reminders" },
-      { label: "Audit Logs", icon: ClipboardList, href: "/dashboard/audit-logs" },
-      { label: "System Health", icon: HeartPulse, href: "/dashboard/system-health" },
+      { label: "Staff", icon: UsersRound, href: "/dashboard/staff", permission: "staff" },
+      { label: "Reminders", icon: Bell, href: "/dashboard/reminders", permission: "reminders" },
     ],
   },
 ];
 
 export default function Sidebar({ user, open, onClose }: SidebarProps) {
   const pathname = usePathname();
+  const { data: perms } = usePermissions();
+
+  // RBAC: staff only SEE the modules the server granted them. This is a
+  // visibility concern only — page access and every API call are enforced
+  // server-side regardless of what is rendered here.
+  // While permissions are loading, everything stays visible (the dashboard
+  // layout normally loads them BEFORE any page — hence before this sidebar
+  // — mounts, so admins never see a flash).
+  function canSee(permission: PermissionKey): boolean {
+    if (!perms) return true;
+    if (perms.isAdmin) return true;
+    return perms.permissions.includes(permission);
+  }
+
+  const sections = SECTIONS.map((section) => ({
+    ...section,
+    items: section.items.filter((item) => canSee(item.permission)),
+  })).filter((section) => section.items.length > 0);
+
+  const roleLabel = perms
+    ? perms.isAdmin
+      ? "Administrator"
+      : perms.designation || "Staff"
+    : "Administrator";
 
   return (
     <>
@@ -138,7 +148,9 @@ export default function Sidebar({ user, open, onClose }: SidebarProps) {
             <p className="truncate text-sm font-semibold text-white">
               {user?.businessName ?? ""}
             </p>
-            <p className="text-[11px] text-blue-200">Admin Dashboard</p>
+            <p className="text-[11px] text-blue-200">
+              {perms && !perms.isAdmin ? "Staff Dashboard" : "Admin Dashboard"}
+            </p>
           </div>
         </div>
 
@@ -147,25 +159,32 @@ export default function Sidebar({ user, open, onClose }: SidebarProps) {
           aria-label="Dashboard navigation"
           className="sidebar-scroll flex-1 overflow-y-auto px-3 pb-6"
         >
-          {SECTIONS.map((section) => (
-            <div key={section.heading}>
-              <p className="px-3 pb-1.5 pt-5 text-[10px] font-semibold uppercase tracking-[0.12em] text-blue-300">
-                {section.heading}
-              </p>
-              {section.items.map((item) => (
-                <NavItem
-                  key={item.label}
-                  {...item}
-                  active={
-                    item.exact
-                      ? pathname === item.href
-                      : pathname === item.href || pathname.startsWith(item.href + "/")
-                  }
-                  onNavigate={onClose}
-                />
-              ))}
-            </div>
-          ))}
+          {sections.length === 0 ? (
+            <p className="px-3 pt-6 text-xs text-blue-200/80">
+              No modules have been assigned to your account yet. Ask the
+              administrator to grant you access.
+            </p>
+          ) : (
+            sections.map((section) => (
+              <div key={section.heading}>
+                <p className="px-3 pb-1.5 pt-5 text-[10px] font-semibold uppercase tracking-[0.12em] text-blue-300">
+                  {section.heading}
+                </p>
+                {section.items.map((item) => (
+                  <NavItem
+                    key={item.label}
+                    {...item}
+                    active={
+                      item.exact
+                        ? pathname === item.href
+                        : pathname === item.href || pathname.startsWith(item.href + "/")
+                    }
+                    onNavigate={onClose}
+                  />
+                ))}
+              </div>
+            ))
+          )}
         </nav>
 
         {/* Bottom user chip — dynamic user name */}
@@ -176,7 +195,7 @@ export default function Sidebar({ user, open, onClose }: SidebarProps) {
             </div>
             <div className="min-w-0">
               <p className="truncate text-xs font-medium text-white">{user?.name ?? ""}</p>
-              <p className="text-[10px] text-blue-200">Administrator</p>
+              <p className="truncate text-[10px] text-blue-200">{roleLabel}</p>
             </div>
           </div>
         </div>

@@ -16,6 +16,8 @@ import {
   Users,
 } from "lucide-react";
 import { authHeaders } from "@/lib/useAuthMe";
+import { usePermissions } from "@/lib/usePermissions";
+import type { PermissionKey } from "@/lib/permissions";
 
 export type TopNavbarUser = {
   name: string;
@@ -68,6 +70,15 @@ export default function TopNavbar({ user, onToggleSidebar }: TopNavbarProps) {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { data: perms } = usePermissions();
+
+  // Hide quick links to modules the user was not granted (page + API access
+  // are enforced server-side regardless — this is visibility only).
+  function canSee(permission: PermissionKey): boolean {
+    if (!perms) return true;
+    if (perms.isAdmin) return true;
+    return perms.permissions.includes(permission);
+  }
 
   // ---- Global search (appointments + patients) ----
   const [query, setQuery] = useState("");
@@ -302,25 +313,29 @@ export default function TopNavbar({ user, onToggleSidebar }: TopNavbarProps) {
       {/* Right cluster (far right end of the navbar) */}
       <div className="flex items-center gap-1.5 md:gap-2">
         {/* Notifications — links to the Reminders page */}
-        <Link
-          href="/dashboard/reminders"
-          className="relative rounded-lg p-2 text-[#5B6B7C] hover:bg-sky-500/10 hover:text-sky-600"
-          aria-label="Notifications"
-          title="Reminders"
-        >
-          <Bell size={18} />
-          <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-sky-500 ring-2 ring-[#F8FAFC]" />
-        </Link>
+        {canSee("reminders") && (
+          <Link
+            href="/dashboard/reminders"
+            className="relative rounded-lg p-2 text-[#5B6B7C] hover:bg-sky-500/10 hover:text-sky-600"
+            aria-label="Notifications"
+            title="Reminders"
+          >
+            <Bell size={18} />
+            <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-sky-500 ring-2 ring-[#F8FAFC]" />
+          </Link>
+        )}
 
         {/* Settings — links to the Settings page */}
-        <Link
-          href="/dashboard/settings"
-          className="rounded-lg p-2 text-[#5B6B7C] hover:bg-sky-500/10 hover:text-sky-600"
-          aria-label="Settings"
-          title="Settings"
-        >
-          <Settings size={18} />
-        </Link>
+        {canSee("settings") && (
+          <Link
+            href="/dashboard/settings"
+            className="rounded-lg p-2 text-[#5B6B7C] hover:bg-sky-500/10 hover:text-sky-600"
+            aria-label="Settings"
+            title="Settings"
+          >
+            <Settings size={18} />
+          </Link>
+        )}
 
         {/* Profile + dropdown */}
         <div className="relative" ref={menuRef}>
@@ -351,13 +366,15 @@ export default function TopNavbar({ user, onToggleSidebar }: TopNavbarProps) {
               >
                 <UserRound size={16} /> Profile
               </Link>
-              <Link
-                href="/dashboard/settings"
-                className="flex w-full items-center gap-2.5 px-4 py-2.5 text-sm text-[#5B6B7C] transition-colors hover:bg-sky-500/10 hover:text-sky-600"
-                onClick={() => setMenuOpen(false)}
-              >
-                <Settings2 size={16} /> Settings
-              </Link>
+              {canSee("settings") && (
+                <Link
+                  href="/dashboard/settings"
+                  className="flex w-full items-center gap-2.5 px-4 py-2.5 text-sm text-[#5B6B7C] transition-colors hover:bg-sky-500/10 hover:text-sky-600"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <Settings2 size={16} /> Settings
+                </Link>
+              )}
               <button
                 type="button"
                 onClick={handleLogout}

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission, APPOINTMENT_READERS } from "@/lib/rbac";
 import {
   mapAppointment,
   SELECT_WITH_JOINS,
@@ -9,6 +9,8 @@ import {
 } from "@/lib/appointmentsShared";
 import { validateAppointment } from "@/lib/appointmentValidation";
 import { getClinicOffDayOn } from "@/lib/offDaysDb";
+import { getClinicBlockedSlotAt } from "@/lib/blockedSlotsDb";
+import { formatScheduleTime } from "@/lib/weeklySchedule";
 
 export const dynamic = "force-dynamic";
 
@@ -26,7 +28,7 @@ function envelope(
 
 export async function GET(request: Request, context: RouteContext) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, APPOINTMENT_READERS);
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }
@@ -52,7 +54,7 @@ export async function GET(request: Request, context: RouteContext) {
 
 export async function PATCH(request: Request, context: RouteContext) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "appointments");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }
@@ -64,10 +66,13 @@ export async function PATCH(request: Request, context: RouteContext) {
     const { id } = await context.params;
 
     // Ownership first: the appointment must belong to this business.
-    // The current clinic/date are loaded so the off-day check below can tell
-    // an untouched date apart from a move onto a closed day.
+    // The current clinic/date/time are loaded so the off-day and blocked-slot
+    // checks below can tell an untouched record apart from a move onto a
+    // closed day or a blocked time range.
     const existing = await pool.query(
-      `SELECT id, clinic_id, TO_CHAR(appointment_date, 'YYYY-MM-DD') AS appointment_date
+      `SELECT id, clinic_id,
+              TO_CHAR(appointment_date, 'YYYY-MM-DD') AS appointment_date,
+              TO_CHAR(appointment_time, 'HH24:MI') AS appointment_time
          FROM appointment WHERE id = $1 AND business_id = $2 LIMIT 1`,
       [id, businessId]
     );
@@ -139,6 +144,31 @@ export async function PATCH(request: Request, context: RouteContext) {
       }
     }
 
+    // Blocked-slot protection: an appointment may never be MOVED onto a
+    // blocked time range. An appointment already sitting on a time that was
+    // later blocked stays editable (so its status can still be changed or
+    // it can be rescheduled off the block — blocking it would trap the
+    // record), mirroring the off-day rule above.
+    const movesOntoBlockedSlot =
+      v.clinicId !== existing.rows[0].clinic_id ||
+      v.appointmentDate !== existing.rows[0].appointment_date ||
+      v.appointmentTime !== existing.rows[0].appointment_time;
+    if (movesOntoBlockedSlot) {
+      const blocked = await getClinicBlockedSlotAt(v.clinicId, v.appointmentDate, v.appointmentTime);
+      if (blocked) {
+        const blockedMessage = blocked.reason
+          ? `This time slot is blocked (${blocked.reason}): ${formatScheduleTime(blocked.start_time)}–${formatScheduleTime(blocked.end_time)}. Please choose another time.`
+          : `This time slot is blocked: ${formatScheduleTime(blocked.start_time)}–${formatScheduleTime(blocked.end_time)}. Please choose another time.`;
+        return envelope(
+          { errors: { appointmentTime: blockedMessage } },
+          blockedMessage,
+          false,
+          "Time slot is blocked",
+          400
+        );
+      }
+    }
+
     // Slot conflict check, excluding the appointment being updated.
     if (await slotConflict(businessId, v.doctorId, v.clinicId, v.appointmentDate, v.appointmentTime, id)) {
       return envelope(
@@ -195,7 +225,7 @@ export async function PATCH(request: Request, context: RouteContext) {
  */
 export async function DELETE(request: Request, context: RouteContext) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "appointments");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }

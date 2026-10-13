@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission } from "@/lib/rbac";
 import { validateClinic } from "@/lib/clinicValidation";
 import { syncScheduleWithClinic } from "@/lib/weeklyScheduleDb";
 
@@ -45,7 +45,7 @@ function fail(message: string, status: number) {
 
 export async function PATCH(request: Request, { params }: Params) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "clinics");
     if (!auth.ok) {
       return fail(auth.message, auth.status);
     }
@@ -166,7 +166,7 @@ export async function PATCH(request: Request, { params }: Params) {
 
 export async function DELETE(request: Request, { params }: Params) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "clinics");
     if (!auth.ok) {
       return fail(auth.message, auth.status);
     }

@@ -1,0 +1,56 @@
+{
+  "email": "ea-ui-main-1791578307742@example.com",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjc5LCJlbWFpbCI6ImVhLXVpLW1haW4tMTc5MTU3ODMwNzc0MkBleGFtcGxlLmNvbSIsImJ1c2luZXNzSWQiOiI0MmNkYmEzNS01NzU4LTQwNWMtYjU0Ni02ODk2YzVkM2QxMDAiLCJpYXQiOjE3OTE1NzgzMTIsImV4cCI6MTc5MjE4MzExMn0.SZBeTIxIR7K0kweTYV11x_RlfnukKfiuB9qqd6dvMyA",
+  "businessId": "42cdba35-5758-405c-b546-6896c5d3d100",
+  "patientId": "b778eeea-5701-4ab7-ac6e-21e9a954404f",
+  "appointmentId": "6e6245c4-8384-4e15-b980-53eef22a59a8",
+  "appointmentCode": "APT-20261010-5037",
+  "clinicName": "EA Test Clinic",
+  "alertIds": [
+    "eb454189-fd3b-4c63-b4af-9df33cec78ce",
+    "29e29405-1ca8-4f5e-972e-19a7d2638fc9",
+    "4a8ceb48-0aa7-4225-8e97-9a24bb07ce03",
+    "9eaa3b74-f87f-4bc8-95a4-4b4324032a12",
+    "4ef0f215-70b1-43ac-98bf-2e6473c02c4d"
+  ],
+  "alerts": [
+    {
+      "id": "4ef0f215-70b1-43ac-98bf-2e6473c02c4d",
+      "alertId": "ALR-20261010-0027",
+      "status": "dismissed",
+      "priority": "critical",
+      "createdAt": "2026-10-09T20:38:52.639Z"
+    },
+    {
+      "id": "9eaa3b74-f87f-4bc8-95a4-4b4324032a12",
+      "alertId": "ALR-20261010-0026",
+      "status": "resolved",
+      "priority": "low",
+      "createdAt": "2026-10-09T20:38:51.905Z"
+    },
+    {
+      "id": "4a8ceb48-0aa7-4225-8e97-9a24bb07ce03",
+      "alertId": "ALR-20261010-0025",
+      "status": "in_progress",
+      "priority": "medium",
+      "createdAt": "2026-10-09T20:38:51.285Z"
+    },
+    {
+      "id": "29e29405-1ca8-4f5e-972e-19a7d2638fc9",
+      "alertId": "ALR-20261010-0024",
+      "status": "acknowledged",
+      "priority": "high",
+      "createdAt": "2026-10-09T20:38:50.598Z"
+    },
+    {
+      "id": "eb454189-fd3b-4c63-b4af-9df33cec78ce",
+      "alertId": "ALR-20261010-0023",
+      "status": "new",
+      "priority": "critical",
+      "createdAt": "2026-10-09T20:38:48.479Z"
+    }
+  ],
+  "emptyEmail": "ea-ui-empty-1791578337815@example.com",
+  "emptyToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgwLCJlbWFpbCI6ImVhLXVpLWVtcHR5LTE3OTE1NzgzMzc4MTVAZXhhbXBsZS5jb20iLCJidXNpbmVzc0lkIjoiOWYyMDNjZGItYTc3Ny00M2M1LTliMWMtMWNiYmE0NTliZWQ4IiwiaWF0IjoxNzkxNTc4MzM5LCJleHAiOjE3OTIxODMxMzl9.vlsSSATfmQ-bPwrS-J9zFWpyadJnRPqaRJiL-5NQ56Y",
+  "emptyBusinessId": "9f203cdb-a777-43c5-9b1c-1cbba459bed8"
+}

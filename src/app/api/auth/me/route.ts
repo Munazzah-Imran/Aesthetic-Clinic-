@@ -1,15 +1,8 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { verifyAuthToken } from "@/lib/jwt";
+import { requireAuth } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
-
-type UserRow = {
-  id: number;
-  name: string;
-  email: string;
-  business_id: string | null;
-};
 
 type BusinessRow = {
   id: string;
@@ -17,47 +10,27 @@ type BusinessRow = {
   email: string;
 };
 
-function bearerToken(request: Request): string | null {
-  const header = request.headers.get("authorization") ?? "";
-  const [scheme, token] = header.split(" ");
-  if (scheme?.toLowerCase() !== "bearer" || !token) return null;
-  return token;
-}
-
 export async function GET(request: Request) {
   try {
-    // 1. Verify the existing JWT (Authorization: Bearer <token>).
-    const token = bearerToken(request);
-    const payload = token ? verifyAuthToken(token) : null;
-    if (!payload) {
+    // 1-3. Verify the existing JWT, re-read the user row from PostgreSQL and
+    //      apply the account-status checks (requireAuth):
+    //      - no/invalid token          -> 401
+    //      - deactivated staff account -> 401 (session revoked)
+    //      - forced password change    -> allowed here (identity needed by
+    //        the password screen; module APIs stay blocked with 403).
+    const auth = await requireAuth(request);
+    if (!auth.ok) {
       return NextResponse.json(
         {
           data: null,
-          error: "Not authenticated",
+          error: auth.message,
           success: false,
-          message: "Not authenticated",
+          message: auth.message,
         },
-        { status: 401 }
+        { status: auth.status }
       );
     }
-
-    // 2-3. Identify the authenticated user from the JWT (server-side only).
-    const userResult = await pool.query<UserRow>(
-      "SELECT id, name, email, business_id FROM users WHERE id = $1 LIMIT 1",
-      [payload.sub]
-    );
-    const user = userResult.rows[0];
-    if (!user) {
-      return NextResponse.json(
-        {
-          data: null,
-          error: "Account no longer exists",
-          success: false,
-          message: "Account no longer exists",
-        },
-        { status: 401 }
-      );
-    }
+    const user = auth.user;
 
     // 4. Load the user's own business (never trust a client-sent businessId).
     let business: BusinessRow | null = null;
@@ -69,7 +42,8 @@ export async function GET(request: Request) {
       business = businessResult.rows[0] ?? null;
     }
 
-    // 5. Safe user + business info only — no password, no secrets.
+    // 5. Safe user + business info only — no password, no membership details,
+    //    no secrets.
     return NextResponse.json(
       {
         data: {

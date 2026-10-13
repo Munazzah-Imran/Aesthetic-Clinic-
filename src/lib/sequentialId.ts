@@ -12,10 +12,14 @@ import {
  * Format: PREFIX-YYYYMMDD-NNNN
  *   Patient:     PT-20260923-0001, PT-20260923-0002, ...  (patient_id_sequence,      START 1)
  *   Appointment: APT-20260923-5001, APT-20260923-5002, ... (appointment_id_sequence,  START 5001)
+ *   Report:      RPT-20260923-0001, RPT-20260923-0002, ... (report_id_sequence,       START 1)
+ *   Consultation: VC-20260923-0001, VC-20260923-0002, ...  (virtual_consultation_id_sequence, START 1)
+ *   Alert:        ALR-20260923-0001, ALR-20260923-0002, ... (emergency_alert_id_sequence, START 1)
  *
- * The numeric parts come from TWO completely independent PostgreSQL
- * sequences, so a patient and an appointment created on the same date can
- * NEVER share the same suffix (0001.. vs 5001.. never overlap).
+ * Each ID type draws from its OWN PostgreSQL sequence and carries its own
+ * prefix, so a patient, an appointment, a report and a consultation created
+ * on the same date can NEVER share an ID (the prefixes PT- / APT- / RPT- /
+ * VC- / ALR- are distinct and the sequences are independent).
  *
  * Why not SELECT COUNT(*)? COUNT(*) can hand the same number to two
  * concurrent requests -> duplicate IDs (exactly the failure mode this

@@ -1,0 +1,60 @@
+
+> nextjs-docker-postgres@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.25
+   - Local:        http://localhost:3000
+   - Network:      http://172.26.0.1:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 7.2s
+ ○ Compiling /api/auth/signup ...
+ ✓ Compiled /api/auth/signup in 4.3s (302 modules)
+(node:13556) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ POST /api/auth/signup 201 in 7707ms
+ ○ Compiling /api/auth/login ...
+ ✓ Compiled /api/auth/login in 3s (384 modules)
+ POST /api/auth/login 200 in 4447ms
+ ○ Compiling /api/staff ...
+ ✓ Compiled /api/staff in 2.6s (393 modules)
+ POST /api/staff 403 in 3298ms
+ GET /api/staff 403 in 162ms
+ POST /api/auth/login 401 in 176ms
+ GET /api/staff 401 in 60ms
+ ○ Compiling /api/password ...
+ ✓ Compiled /api/password in 991ms (396 modules)
+ PATCH /api/password 401 in 1208ms
+ POST /api/auth/login 401 in 153ms
+ POST /api/staff 403 in 182ms
+ POST /api/staff 401 in 46ms
+ ○ Compiling /api/auth/me ...
+ ✓ Compiled /api/auth/me in 992ms (398 modules)
+ GET /api/auth/me 200 in 1536ms
+ ○ Compiling /api/auth/permissions ...
+ ✓ Compiled /api/auth/permissions in 833ms (400 modules)
+ GET /api/auth/permissions 200 in 1212ms
+ POST /api/auth/signup 201 in 1433ms
+ POST /api/auth/login 200 in 397ms
+ PATCH /api/password 200 in 2387ms
+ POST /api/staff 201 in 2545ms
+ GET /api/staff 200 in 381ms
+ POST /api/auth/login 200 in 484ms
+ GET /api/staff 403 in 184ms
+ PATCH /api/password 200 in 874ms
+ POST /api/auth/login 200 in 471ms
+ POST /api/staff 409 in 961ms
+ POST /api/staff 403 in 755ms
+ GET /api/auth/me 200 in 395ms
+ GET /api/auth/permissions 200 in 325ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 4.5s (631 modules)
+ GET /login 200 in 5787ms

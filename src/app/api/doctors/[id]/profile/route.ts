@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission, DOCTOR_READERS } from "@/lib/rbac";
 import {
   validateDoctorProfile,
   MAX_PHOTO_DATA_URL_LENGTH,
@@ -76,7 +76,7 @@ async function loadOwnedDoctor(
 
 export async function GET(request: Request, context: RouteContext) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, DOCTOR_READERS);
     if (!auth.ok) return fail(auth.status, auth.message);
     if (!auth.user.business_id) return fail(400, "No business associated with this account.");
     const businessId: string = auth.user.business_id;
@@ -129,7 +129,7 @@ export async function GET(request: Request, context: RouteContext) {
 }
 
 export async function PUT(request: Request, context: RouteContext) {
-  const auth = await requireAuth(request);
+  const auth = await requirePermission(request, "doctor_profile");
   if (!auth.ok) return fail(auth.status, auth.message);
   if (!auth.user.business_id) return fail(400, "No business associated with this account.");
   const businessId: string = auth.user.business_id;

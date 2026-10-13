@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission, DOCTOR_READERS } from "@/lib/rbac";
 import { validateDoctor } from "@/lib/doctorValidation";
 
 export const dynamic = "force-dynamic";
@@ -42,7 +42,7 @@ function mapDoctor(row: DoctorRow) {
 }
 
 export async function GET(request: Request) {
-  const auth = await requireAuth(request);
+  const auth = await requirePermission(request, DOCTOR_READERS);
   if (!auth.ok) {
     return NextResponse.json(
       { data: null, error: auth.message, success: false, message: auth.message },
@@ -77,7 +77,7 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const auth = await requireAuth(request);
+  const auth = await requirePermission(request, "doctor_profile");
   if (!auth.ok) {
     return NextResponse.json(
       { data: null, error: auth.message, success: false, message: auth.message },

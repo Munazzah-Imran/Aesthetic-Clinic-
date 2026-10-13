@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission } from "@/lib/rbac";
 import {
   SELECT_WITH_JOINS,
   mapAppointment,
@@ -64,7 +64,7 @@ function toDashboardAppointment(row: AppointmentRow): DashboardAppointment {
 
 export async function GET(request: Request) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "overview");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.status);
     }

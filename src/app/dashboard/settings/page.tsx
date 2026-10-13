@@ -19,6 +19,7 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 import Sidebar from "@/components/dashboard/Sidebar";
+import PasswordInput from "@/components/PasswordInput";
 import TopNavbar from "@/components/dashboard/TopNavbar";
 import { useAuthMe } from "@/lib/useAuthMe";
 import {
@@ -941,8 +942,7 @@ export default function SettingsPage() {
                   <form onSubmit={handlePasswordSave} className="space-y-4">
                     <div>
                       <label className="mb-1.5 block text-xs font-medium text-[#5B6B7C]">Current Password</label>
-                      <input
-                        type="password"
+                      <PasswordInput
                         value={passwords.currentPassword}
                         onChange={(e) => {
                           setPasswords((p) => ({ ...p, currentPassword: e.target.value }));
@@ -958,8 +958,7 @@ export default function SettingsPage() {
                     </div>
                     <div>
                       <label className="mb-1.5 block text-xs font-medium text-[#5B6B7C]">New Password</label>
-                      <input
-                        type="password"
+                      <PasswordInput
                         value={passwords.newPassword}
                         onChange={(e) => {
                           setPasswords((p) => ({ ...p, newPassword: e.target.value }));
@@ -975,8 +974,7 @@ export default function SettingsPage() {
                     </div>
                     <div>
                       <label className="mb-1.5 block text-xs font-medium text-[#5B6B7C]">Confirm New Password</label>
-                      <input
-                        type="password"
+                      <PasswordInput
                         value={passwords.confirmPassword}
                         onChange={(e) => {
                           setPasswords((p) => ({ ...p, confirmPassword: e.target.value }));

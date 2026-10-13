@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission, APPOINTMENT_READERS } from "@/lib/rbac";
 import {
   mapAppointment,
   SELECT_WITH_JOINS,
@@ -9,6 +9,8 @@ import {
 } from "@/lib/appointmentsShared";
 import { validateAppointment } from "@/lib/appointmentValidation";
 import { getClinicOffDayOn } from "@/lib/offDaysDb";
+import { getClinicBlockedSlotAt } from "@/lib/blockedSlotsDb";
+import { formatScheduleTime } from "@/lib/weeklySchedule";
 import { withSequentialId } from "@/lib/sequentialId";
 
 export const dynamic = "force-dynamic";
@@ -24,7 +26,7 @@ export const dynamic = "force-dynamic";
  */
 
 export async function GET(request: Request) {
-  const auth = await requireAuth(request);
+  const auth = await requirePermission(request, APPOINTMENT_READERS);
   if (!auth.ok) {
     return NextResponse.json(
       { data: null, error: auth.message, success: false, message: auth.message },
@@ -60,7 +62,7 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const auth = await requireAuth(request);
+  const auth = await requirePermission(request, "appointments");
   if (!auth.ok) {
     return NextResponse.json(
       { data: null, error: auth.message, success: false, message: auth.message },
@@ -140,6 +142,25 @@ export async function POST(request: Request) {
           error: "Clinic is off on this date",
           success: false,
           message: offDayMessage,
+        },
+        { status: 400 }
+      );
+    }
+
+    // Blocked-slot protection: the chosen time falls inside a blocked
+    // range for this clinic on this date (ownership was verified above,
+    // so the lookup is implicitly business-scoped).
+    const blocked = await getClinicBlockedSlotAt(v.clinicId, v.appointmentDate, v.appointmentTime);
+    if (blocked) {
+      const blockedMessage = blocked.reason
+        ? `This time slot is blocked (${blocked.reason}): ${formatScheduleTime(blocked.start_time)}–${formatScheduleTime(blocked.end_time)}. Please choose another time.`
+        : `This time slot is blocked: ${formatScheduleTime(blocked.start_time)}–${formatScheduleTime(blocked.end_time)}. Please choose another time.`;
+      return NextResponse.json(
+        {
+          data: { errors: { appointmentTime: blockedMessage } },
+          error: "Time slot is blocked",
+          success: false,
+          message: blockedMessage,
         },
         { status: 400 }
       );

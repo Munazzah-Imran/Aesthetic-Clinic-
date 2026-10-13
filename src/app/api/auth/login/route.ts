@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import pool from "@/lib/db";
 import { signAuthToken } from "@/lib/jwt";
+import { ensureStaffTables } from "@/lib/staffDb";
 
 export const dynamic = "force-dynamic";
 
@@ -83,6 +84,29 @@ export async function POST(request: Request) {
           message: "Incorrect password. Please try again.",
         },
         { status: 401 }
+      );
+    }
+
+    // Deactivated staff may NOT log in — the status is re-read from the
+    // database on every attempt (stateless JWTs cannot revoke themselves,
+    // so the check lives here AND in requireAuth for existing tokens).
+    // After consolidation the staff-account status lives on users.account_status
+    // (staff rows have role='staff'); owners have role='admin' and are never
+    // gated by this check (they set their password at signup).
+    const membership = await pool.query<{ account_status: string; role: string | null }>(
+      "SELECT account_status, role FROM users WHERE id = $1 LIMIT 1",
+      [user.id]
+    );
+    const row = membership.rows[0];
+    if (row && row.role === "staff" && row.account_status === "inactive") {
+      return NextResponse.json(
+        {
+          data: null,
+          error: "Your account has been deactivated. Please contact the administrator.",
+          success: false,
+          message: "Your account has been deactivated. Please contact the administrator.",
+        },
+        { status: 403 }
       );
     }
 

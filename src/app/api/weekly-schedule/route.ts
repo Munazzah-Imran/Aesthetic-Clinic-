@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission } from "@/lib/rbac";
 import { loadWeeklySchedules } from "@/lib/weeklyScheduleDb";
 
 export const dynamic = "force-dynamic";
@@ -42,7 +42,7 @@ function envelope(
 
 export async function GET(request: Request) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "weekly_schedule");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }

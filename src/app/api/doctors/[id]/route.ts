@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { requireAuth } from "@/lib/auth";
+import { requirePermission, DOCTOR_READERS } from "@/lib/rbac";
 import { validateDoctor } from "@/lib/doctorValidation";
 
 export const dynamic = "force-dynamic";
@@ -43,7 +43,7 @@ function envelope(data: unknown, message: string, success = true, error: string 
 
 export async function GET(request: Request, context: RouteContext) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, DOCTOR_READERS);
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }
@@ -64,7 +64,7 @@ export async function GET(request: Request, context: RouteContext) {
 
 export async function PATCH(request: Request, context: RouteContext) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "doctor_profile");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }
@@ -148,7 +148,7 @@ export async function PATCH(request: Request, context: RouteContext) {
 
 export async function DELETE(request: Request, context: RouteContext) {
   try {
-    const auth = await requireAuth(request);
+    const auth = await requirePermission(request, "doctor_profile");
     if (!auth.ok) {
       return envelope(null, auth.message, false, auth.message, auth.status);
     }

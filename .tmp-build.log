@@ -1,0 +1,96 @@
+
+> nextjs-docker-postgres@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.25
+   - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 24.0s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/27) ...
+   Generating static pages (6/27) 
+   Generating static pages (13/27) 
+   Generating static pages (20/27) 
+ ✓ Generating static pages (27/27)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    6.47 kB         109 kB
+├ ○ /_not-found                            237 B         103 kB
+├ ƒ /api/appointments                      237 B         103 kB
+├ ƒ /api/appointments/[id]                 237 B         103 kB
+├ ƒ /api/auth/login                        237 B         103 kB
+├ ƒ /api/auth/me                           237 B         103 kB
+├ ƒ /api/auth/permissions                  237 B         103 kB
+├ ƒ /api/auth/signup                       237 B         103 kB
+├ ƒ /api/blocked-slots                     237 B         103 kB
+├ ƒ /api/blocked-slots/[id]                237 B         103 kB
+├ ƒ /api/clinics                           237 B         103 kB
+├ ƒ /api/clinics/[id]                      237 B         103 kB
+├ ƒ /api/dashboard                         237 B         103 kB
+├ ƒ /api/doctors                           237 B         103 kB
+├ ƒ /api/doctors/[id]                      237 B         103 kB
+├ ƒ /api/doctors/[id]/profile              237 B         103 kB
+├ ƒ /api/emergency-alerts                  237 B         103 kB
+├ ƒ /api/emergency-alerts/[id]             237 B         103 kB
+├ ƒ /api/off-days                          237 B         103 kB
+├ ƒ /api/off-days/[id]                     237 B         103 kB
+├ ƒ /api/password                          237 B         103 kB
+├ ƒ /api/patients                          237 B         103 kB
+├ ƒ /api/patients/[id]                     237 B         103 kB
+├ ƒ /api/profile                           237 B         103 kB
+├ ƒ /api/reports                           237 B         103 kB
+├ ƒ /api/reports/[id]                      237 B         103 kB
+├ ƒ /api/reports/[id]/file                 237 B         103 kB
+├ ƒ /api/services                          237 B         103 kB
+├ ƒ /api/services/[id]                     237 B         103 kB
+├ ƒ /api/settings                          237 B         103 kB
+├ ƒ /api/special-schedules                 237 B         103 kB
+├ ƒ /api/special-schedules/[id]            237 B         103 kB
+├ ƒ /api/staff                             237 B         103 kB
+├ ƒ /api/staff-messages                    237 B         103 kB
+├ ƒ /api/staff-messages/[id]               237 B         103 kB
+├ ƒ /api/staff/[id]                        237 B         103 kB
+├ ƒ /api/staff/[id]/permissions            237 B         103 kB
+├ ƒ /api/todos                             237 B         103 kB
+├ ƒ /api/todos/[id]                        237 B         103 kB
+├ ƒ /api/virtual-consultations             237 B         103 kB
+├ ƒ /api/virtual-consultations/[id]        237 B         103 kB
+├ ƒ /api/weekly-schedule                   237 B         103 kB
+├ ƒ /api/weekly-schedule/[clinicId]        237 B         103 kB
+├ ○ /dashboard                           4.18 kB         118 kB
+├ ○ /dashboard/appointments              7.82 kB         126 kB
+├ ○ /dashboard/audit-logs                1.84 kB         116 kB
+├ ○ /dashboard/blocked-slots              4.1 kB         122 kB
+├ ○ /dashboard/calendar                  3.38 kB         122 kB
+├ ○ /dashboard/clinics                   5.08 kB         123 kB
+├ ○ /dashboard/doctors                   7.89 kB         122 kB
+├ ƒ /dashboard/doctors/[id]              7.41 kB         122 kB
+├ ○ /dashboard/emergency-alerts          8.99 kB         123 kB
+├ ○ /dashboard/human-handover            1.88 kB         116 kB
+├ ○ /dashboard/off-days                  3.69 kB         121 kB
+├ ○ /dashboard/patients                  9.92 kB         124 kB
+├ ○ /dashboard/profile                   6.07 kB         120 kB
+├ ○ /dashboard/reminders                 1.71 kB         116 kB
+├ ○ /dashboard/reports                   16.5 kB         131 kB
+├ ○ /dashboard/services                  4.85 kB         122 kB
+├ ○ /dashboard/settings                  8.87 kB         123 kB
+├ ○ /dashboard/special-schedules          4.1 kB         122 kB
+├ ○ /dashboard/staff                     11.3 kB         125 kB
+├ ○ /dashboard/staff-inbox               7.79 kB         122 kB
+├ ○ /dashboard/system-health             1.71 kB         116 kB
+├ ○ /dashboard/virtual-consultation      9.05 kB         123 kB
+├ ○ /dashboard/weekly-schedule           3.01 kB         121 kB
+└ ○ /login                               1.95 kB         105 kB
++ First Load JS shared by all             103 kB
+  ├ chunks/1255-7316b50163a428e6.js      46.4 kB
+  ├ chunks/4bd1b696-f785427dddbba9fb.js  54.2 kB
+  └ other shared chunks (total)             2 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
