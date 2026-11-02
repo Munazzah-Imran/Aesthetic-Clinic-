@@ -298,7 +298,6 @@ export function validatePasswordChange(raw: PasswordChangeInput):
 export const NOTIFICATION_KEYS = [
   "newAppointment",
   "appointmentCancellation",
-  "appointmentReminder",
   "newPatient",
   "system",
   "email",
@@ -445,7 +444,6 @@ export const DEFAULT_SETTINGS: Required<{
   notifications: {
     newAppointment: true,
     appointmentCancellation: true,
-    appointmentReminder: true,
     newPatient: true,
     system: true,
     email: false,

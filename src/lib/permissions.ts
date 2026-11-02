@@ -31,7 +31,6 @@ export const PERMISSIONS = [
   { key: "staff_inbox", label: "Staff Inbox", route: "/dashboard/staff-inbox", group: "MANAGEMENT" },
   { key: "human_handover", label: "Human Handover", route: "/dashboard/human-handover", group: "MANAGEMENT" },
   { key: "staff", label: "Staff", route: "/dashboard/staff", group: "MANAGEMENT" },
-  { key: "reminders", label: "Reminders", route: "/dashboard/reminders", group: "MANAGEMENT" },
   { key: "audit_logs", label: "Audit Logs", route: "/dashboard/audit-logs", group: "MANAGEMENT" },
   { key: "system_health", label: "System Health", route: "/dashboard/system-health", group: "MANAGEMENT" },
   { key: "settings", label: "Settings", route: "/dashboard/settings", group: "MANAGEMENT" },
@@ -60,8 +59,7 @@ export function isPermissionKey(value: string): value is PermissionKey {
  * checklist (Add/Edit Staff Step 2 and Manage Permissions), and the shared
  * validation (src/lib/staff.ts) rejects them on every staff write API — so
  * they cannot be re-assigned through stale checkbox state or submitted
- * manually from the frontend. Reminders and all other options remain
- * assignable.
+ * manually from the frontend. All other options remain assignable.
  * ---------------------------------------------------------------------- */
 export const NON_ASSIGNABLE_PERMISSION_KEYS: ReadonlySet<string> = new Set([
   "emergency_alerts", // Emergency Alerts
@@ -72,7 +70,7 @@ export const NON_ASSIGNABLE_PERMISSION_KEYS: ReadonlySet<string> = new Set([
   "system_health", // System Health
 ]);
 
-/** The permission options shown in the staff permission checklist (13). */
+/** The permission options shown in the staff permission checklist (12). */
 export const ASSIGNABLE_PERMISSIONS = PERMISSIONS.filter(
   (p) => !NON_ASSIGNABLE_PERMISSION_KEYS.has(p.key)
 );

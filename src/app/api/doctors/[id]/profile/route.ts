@@ -35,6 +35,7 @@ type ProfileRow = {
   phone: string | null;
   email: string | null;
   languages: string | null;
+  clinic_id: string | null;
   updated_at: string;
 };
 
@@ -89,11 +90,24 @@ export async function GET(request: Request, context: RouteContext) {
     const result = await pool.query<ProfileRow>(
       `SELECT doctor_id, photo_url, full_name, professional_title, specialty, experience,
               qualifications, additional_qualifications, short_bio, full_bio,
-              professional_interests, areas_of_expertise, phone, email, languages, updated_at
+              professional_interests, areas_of_expertise, phone, email, languages,
+              clinic_id, updated_at
          FROM doctor_profiles
         WHERE doctor_id = $1
         LIMIT 1`,
       [doctorId]
+    );
+
+    // Branch (city) options for the profile form's dropdown — the SAME
+    // business's clinics only (verified business_id from the JWT). Read-only
+    // reference data served from THIS profile endpoint, so loading the form
+    // never requires the Clinics module permission.
+    const branches = await pool.query<{ id: string; clinic_name: string; city: string }>(
+      `SELECT id, clinic_name, city
+         FROM clinic
+        WHERE business_id = $1 AND status = 'active'
+        ORDER BY city, clinic_name`,
+      [businessId]
     );
 
     // Merge: the profile row owns every detailed field; identity fields
@@ -118,10 +132,14 @@ export async function GET(request: Request, context: RouteContext) {
       phone: profile?.phone ?? null,
       email: profile?.email ?? null,
       languages: profile?.languages ?? null,
+      clinic_id: profile?.clinic_id ?? null,
       updated_at: profile?.updated_at ?? null,
     };
 
-    return ok(data, profile ? "Doctor profile loaded." : "No profile yet.");
+    return ok(
+      { ...data, branches: branches.rows },
+      profile ? "Doctor profile loaded." : "No profile yet."
+    );
   } catch (error) {
     console.error("GET /api/doctors/[id]/profile failed:", error);
     return fail(500, "Unable to load the doctor profile. Please try again.");
@@ -168,15 +186,35 @@ export async function PUT(request: Request, context: RouteContext) {
     if (!doctor) return fail(404, "Doctor not found.");
     const doctorId: string = doctor.id;
 
+    // Branch ownership: the selected clinic must belong to THIS business
+    // (never trust a client-sent id). Verified server-side every save.
+    if (d.clinicId) {
+      const ownedClinic = await pool.query(
+        "SELECT 1 FROM clinic WHERE id = $1 AND business_id = $2 LIMIT 1",
+        [d.clinicId, businessId]
+      );
+      if (ownedClinic.rows.length === 0) {
+        return NextResponse.json(
+          {
+            success: false,
+            data: { errors: { clinicId: "Selected branch does not belong to your business." } },
+            error: "Please fix the highlighted fields.",
+            message: "Please fix the highlighted fields.",
+          },
+          { status: 400 }
+        );
+      }
+    }
+
     const inserted = await pool.query<ProfileRow>(
       `INSERT INTO doctor_profiles (
          business_id, doctor_id, photo_url, full_name, professional_title, specialty,
          experience, qualifications, additional_qualifications, short_bio, full_bio,
-         professional_interests, areas_of_expertise, phone, email, languages
+         professional_interests, areas_of_expertise, phone, email, languages, clinic_id
        ) VALUES (
          $1, $2, $3, $4, $5, $6,
          $7, $8, $9, $10, $11,
-         $12, $13, $14, $15, $16
+         $12, $13, $14, $15, $16, $17
        )
        ON CONFLICT (doctor_id) WHERE doctor_id IS NOT NULL DO UPDATE SET
          business_id = EXCLUDED.business_id,
@@ -194,11 +232,13 @@ export async function PUT(request: Request, context: RouteContext) {
          phone = EXCLUDED.phone,
          email = EXCLUDED.email,
          languages = EXCLUDED.languages,
+         clinic_id = EXCLUDED.clinic_id,
          updated_at = NOW()
        WHERE doctor_profiles.doctor_id = EXCLUDED.doctor_id
        RETURNING doctor_id, photo_url, full_name, professional_title, specialty, experience,
                  qualifications, additional_qualifications, short_bio, full_bio,
-                 professional_interests, areas_of_expertise, phone, email, languages, updated_at`,
+                 professional_interests, areas_of_expertise, phone, email, languages,
+                 clinic_id, updated_at`,
       [
         businessId,
         doctorId,
@@ -216,6 +256,7 @@ export async function PUT(request: Request, context: RouteContext) {
         d.phone,
         d.email,
         d.languages,
+        d.clinicId,
       ]
     );
 

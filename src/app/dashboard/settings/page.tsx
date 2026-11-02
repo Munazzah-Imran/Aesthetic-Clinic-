@@ -77,7 +77,6 @@ type SettingsResponse = {
 const NOTIFICATION_LABELS: Record<string, string> = {
   newAppointment: "New Appointment Notifications",
   appointmentCancellation: "Appointment Cancellation Notifications",
-  appointmentReminder: "Appointment Reminder",
   newPatient: "New Patient Notifications",
   system: "System Notifications",
   email: "Email Notifications",
@@ -86,7 +85,6 @@ const NOTIFICATION_LABELS: Record<string, string> = {
 const NOTIFICATION_HINTS: Record<string, string> = {
   newAppointment: "Get notified whenever a new appointment is booked.",
   appointmentCancellation: "Get notified when an appointment is cancelled.",
-  appointmentReminder: "Send reminders before upcoming appointments.",
   newPatient: "Get notified when a new patient is registered.",
   system: "Important system and account alerts.",
   email: "Also receive these notifications by email.",

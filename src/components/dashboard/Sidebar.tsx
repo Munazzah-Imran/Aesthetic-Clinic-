@@ -15,7 +15,6 @@ import {
   Ban,
   HeartPulse,
   UsersRound,
-  Bell,
   X,
 } from "lucide-react";
 import { usePermissions } from "@/lib/usePermissions";
@@ -81,7 +80,6 @@ const SECTIONS: NavSection[] = [
     heading: "MANAGEMENT",
     items: [
       { label: "Staff", icon: UsersRound, href: "/dashboard/staff", permission: "staff" },
-      { label: "Reminders", icon: Bell, href: "/dashboard/reminders", permission: "reminders" },
     ],
   },
 ];

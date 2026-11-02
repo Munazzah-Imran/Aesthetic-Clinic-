@@ -16,6 +16,8 @@
 // ---------------------------------------------------------------------------
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+/** Loose UUID check (v1–v5 / v4 form) for the branch selector value. */
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 /** Phone: digits, spaces, +, hyphens and parentheses only. */
 const PHONE_RE = /^[0-9+\-() ]+$/;
 
@@ -37,6 +39,7 @@ export type DoctorProfileInput = {
   phone: unknown;
   email: unknown;
   languages: unknown;
+  clinicId: unknown;
 };
 
 export type DoctorProfileValidated = {
@@ -54,6 +57,8 @@ export type DoctorProfileValidated = {
   phone: string | null;
   email: string | null;
   languages: string | null;
+  /** Branch (city) this doctor works at — clinic.id, or null when unset. */
+  clinicId: string | null;
 };
 
 export type DoctorProfileFieldErrors = Partial<Record<keyof DoctorProfileInput, string>>;
@@ -154,6 +159,14 @@ export function validateDoctorProfile(
   const languages = profileText(raw.languages, 255, "Languages");
   if (languages.error) errors.languages = languages.error;
 
+  // ---- clinicId (optional; must be a UUID when provided) ----
+  // Ownership (does this branch belong to THIS business?) is verified in the
+  // API route against PostgreSQL — this layer only checks the shape.
+  const clinicIdRaw = asOptionalString(raw.clinicId);
+  if (clinicIdRaw !== "" && !UUID_RE.test(clinicIdRaw)) {
+    errors.clinicId = "Selected branch is invalid.";
+  }
+
   if (Object.keys(errors).length > 0) {
     return { ok: false, errors };
   }
@@ -175,6 +188,7 @@ export function validateDoctorProfile(
       phone: phoneRaw === "" ? null : phoneRaw,
       email: emailRaw === "" ? null : emailRaw,
       languages: languages.value,
+      clinicId: clinicIdRaw === "" ? null : clinicIdRaw,
     },
   };
 }

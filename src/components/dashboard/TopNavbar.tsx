@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  Bell,
   CalendarDays,
   Loader2,
   Menu,
@@ -312,19 +311,6 @@ export default function TopNavbar({ user, onToggleSidebar }: TopNavbarProps) {
 
       {/* Right cluster (far right end of the navbar) */}
       <div className="flex items-center gap-1.5 md:gap-2">
-        {/* Notifications — links to the Reminders page */}
-        {canSee("reminders") && (
-          <Link
-            href="/dashboard/reminders"
-            className="relative rounded-lg p-2 text-[#5B6B7C] hover:bg-sky-500/10 hover:text-sky-600"
-            aria-label="Notifications"
-            title="Reminders"
-          >
-            <Bell size={18} />
-            <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-sky-500 ring-2 ring-[#F8FAFC]" />
-          </Link>
-        )}
-
         {/* Settings — links to the Settings page */}
         {canSee("settings") && (
           <Link

@@ -1,0 +1,249 @@
+
+> nextjs-docker-postgres@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.25
+   - Local:        http://localhost:3000
+   - Network:      http://172.21.80.1:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 7.7s
+ ○ Compiling /login ...
+ ✓ Compiled /login in 3.5s (630 modules)
+ GET /login 200 in 5012ms
+ GET /login 200 in 304ms
+ ○ Compiling /api/auth/signup ...
+ ✓ Compiled /api/auth/signup in 1722ms (655 modules)
+(node:1732) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ POST /api/auth/signup 201 in 3581ms
+ ○ Compiling /api/auth/login ...
+ ✓ Compiled /api/auth/login in 1155ms (736 modules)
+ POST /api/auth/login 200 in 1791ms
+ GET /login 200 in 608ms
+ ○ Compiling /dashboard/staff ...
+ ✓ Compiled /dashboard/staff in 2.2s (847 modules)
+ GET /dashboard/staff 200 in 3122ms
+ ○ Compiling /api/auth/permissions ...
+ ✓ Compiled /api/auth/permissions in 854ms (852 modules)
+ GET /api/auth/permissions 200 in 1301ms
+ ○ Compiling /api/auth/me ...
+ ✓ Compiled /api/auth/me in 552ms (854 modules)
+ GET /api/auth/me 200 in 862ms
+ GET /api/auth/me 200 in 277ms
+ ○ Compiling /api/staff ...
+ ✓ Compiled /api/staff in 3.3s (860 modules)
+ GET /api/staff 403 in 4030ms
+ GET /api/staff 403 in 198ms
+ POST /api/staff 403 in 158ms
+ POST /api/auth/signup 201 in 2523ms
+ POST /api/auth/login 200 in 378ms
+ GET /login 200 in 598ms
+ GET /dashboard/staff 200 in 424ms
+ GET /api/auth/permissions 200 in 308ms
+ GET /api/auth/me 200 in 576ms
+ GET /api/auth/me 200 in 255ms
+ GET /api/staff 403 in 715ms
+ GET /api/staff 403 in 181ms
+ POST /api/staff 403 in 159ms
+ POST /api/auth/login 200 in 1068ms
+ GET /api/staff 403 in 150ms
+ GET /api/staff 403 in 139ms
+ POST /api/auth/signup 201 in 1448ms
+ POST /api/auth/login 200 in 390ms
+ ○ Compiling /api/password ...
+ ✓ Compiled /api/password in 1469ms (847 modules)
+ PATCH /api/password 200 in 3417ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 519ms (556 modules)
+ GET /login 200 in 1024ms
+ GET /dashboard/staff 200 in 460ms
+ ✓ Compiled /api/auth/permissions in 508ms (560 modules)
+ GET /api/auth/permissions 200 in 1178ms
+ ✓ Compiled /api/auth/me in 437ms (562 modules)
+ GET /api/auth/me 200 in 748ms
+ GET /api/auth/me 200 in 282ms
+ ○ Compiling /api/staff ...
+ ✓ Compiled /api/staff in 2.2s (565 modules)
+ GET /api/staff 200 in 4256ms
+ GET /api/staff 200 in 345ms
+ POST /api/staff 201 in 2252ms
+ GET /api/staff 200 in 322ms
+ ○ Compiling /api/staff/[id] ...
+ ✓ Compiled /api/staff/[id] in 1010ms (865 modules)
+ GET /api/staff/49547af0-cd4c-48ca-a8cd-28aeb39ee39e 200 in 5848ms
+ POST /api/auth/signup 201 in 1176ms
+ POST /api/auth/login 200 in 360ms
+ PATCH /api/password 200 in 823ms
+ GET /login 200 in 435ms
+ GET /dashboard/staff 200 in 509ms
+ GET /api/auth/permissions 200 in 251ms
+ GET /api/auth/me 200 in 259ms
+ GET /api/auth/me 200 in 274ms
+ GET /api/staff 200 in 894ms
+ GET /api/staff 200 in 321ms
+ POST /api/staff 201 in 2042ms
+ GET /api/staff 200 in 333ms
+ GET /api/staff/c0f457ae-78c3-4d9c-b296-4fd946353644 200 in 345ms
+ ✓ Compiled in 6.5s (749 modules)
+ ✓ Compiled in 968ms (312 modules)
+ ✓ Compiled in 535ms (312 modules)
+ ○ Compiling /login ...
+ ✓ Compiled /login in 512ms (444 modules)
+ ⨯ Error: ENOENT: no such file or directory, open 'D:\aesthetic clinic\.next\server\vendor-chunks\next.js'
+    at <unknown> (D:\aesthetic clinic\.next\server\app\login\page.js:333:47)
+    at Object.<anonymous> (D:\aesthetic clinic\.next\server\app\login\page.js:336:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\aesthetic clinic\\.next\\server\\vendor-chunks\\next.js',
+  page: '/login'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 3.1s (1089 modules)
+ GET /login 500 in 5149ms
+ GET /login 200 in 529ms
+ ○ Compiling /api/auth/signup ...
+ ✓ Compiled /api/auth/signup in 688ms (662 modules)
+ POST /api/auth/signup 201 in 3363ms
+ ○ Compiling /api/auth/login ...
+ ✓ Compiled /api/auth/login in 1375ms (743 modules)
+ POST /api/auth/login 200 in 2146ms
+ ○ Compiling /api/password ...
+ ✓ Compiled /api/password in 1541ms (750 modules)
+ PATCH /api/password 200 in 3476ms
+ ○ Compiling /api/auth/permissions ...
+ ✓ Compiled /api/auth/permissions in 897ms (754 modules)
+ GET /api/auth/permissions 200 in 1242ms
+ ○ Compiling /api/patients ...
+ ✓ Compiled /api/patients in 1202ms (1208 modules)
+ POST /api/patients 201 in 2992ms
+ ○ Compiling /api/staff ...
+ ✓ Compiled /api/staff in 654ms (760 modules)
+ POST /api/staff 400 in 1004ms
+ GET /api/staff 200 in 1216ms
+ POST /api/auth/login 401 in 136ms
+ POST /api/auth/signup 201 in 1342ms
+ POST /api/auth/login 200 in 461ms
+ PATCH /api/password 200 in 890ms
+ GET /api/auth/permissions 200 in 247ms
+ POST /api/patients 201 in 1649ms
+ POST /api/staff 201 in 1045ms
+ GET /api/staff 200 in 325ms
+ POST /api/auth/login 200 in 430ms
+ GET /api/auth/permissions 200 in 362ms
+ PATCH /api/password 200 in 819ms
+ GET /api/auth/permissions 200 in 371ms
+ ○ Compiling /api/dashboard ...
+ ✓ Compiled /api/dashboard in 2s (1111 modules)
+ GET /api/dashboard 200 in 3525ms
+ GET /api/patients 200 in 460ms
+ ○ Compiling /api/settings ...
+ ✓ Compiled /api/settings in 900ms (1113 modules)
+ GET /api/settings 403 in 1468ms
+ ○ Compiling /api/services ...
+ ✓ Compiled /api/services in 743ms (1117 modules)
+ GET /api/services 403 in 1204ms
+ ○ Compiling /api/appointments ...
+ ✓ Compiled /api/appointments in 1293ms (1123 modules)
+ GET /api/appointments 403 in 1949ms
+ ○ Compiling /api/clinics ...
+ ✓ Compiled /api/clinics in 1215ms (1127 modules)
+ GET /api/clinics 403 in 1626ms
+ ○ Compiling /api/doctors ...
+ ✓ Compiled /api/doctors in 1105ms (1130 modules)
+ GET /api/doctors 403 in 1559ms
+ ○ Compiling /api/emergency-alerts ...
+ ✓ Compiled /api/emergency-alerts in 1028ms (1134 modules)
+ GET /api/emergency-alerts 403 in 1495ms
+ GET /api/staff 403 in 345ms
+ POST /api/staff 403 in 349ms
+ ○ Compiling /api/staff/[id] ...
+ ✓ Compiled /api/staff/[id] in 1311ms (686 modules)
+ PATCH /api/staff/4d051a86-6c44-4cc7-aac3-7f29d9822653 403 in 1788ms
+ GET /api/patients 401 in 74ms
+ GET /api/dashboard 401 in 66ms
+ POST /api/auth/signup 201 in 840ms
+ POST /api/auth/login 200 in 562ms
+ PATCH /api/password 200 in 2383ms
+ GET /api/auth/permissions 200 in 260ms
+ POST /api/patients 201 in 1597ms
+ GET /api/patients 200 in 347ms
+ GET /api/patients 200 in 439ms
+ ○ Compiling /api/patients/[id] ...
+ ✓ Compiled /api/patients/[id] in 844ms (1138 modules)
+ GET /api/patients/fd8487ec-1505-4c6c-8ddf-9311f861fe80 404 in 3759ms
+ PATCH /api/patients/fd8487ec-1505-4c6c-8ddf-9311f861fe80 404 in 379ms
+ DELETE /api/patients/fd8487ec-1505-4c6c-8ddf-9311f861fe80 404 in 311ms
+ GET /api/staff 200 in 1278ms
+ PATCH /api/staff/4d051a86-6c44-4cc7-aac3-7f29d9822653 404 in 350ms
+ ○ Compiling /api/staff/[id]/permissions ...
+ ✓ Compiled /api/staff/[id]/permissions in 1156ms (1140 modules)
+ GET /api/staff/4d051a86-6c44-4cc7-aac3-7f29d9822653/permissions 404 in 7086ms
+ GET /api/patients 200 in 350ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 2.2s (1141 modules)
+ GET /api/todos 404 in 3045ms
+ POST /api/todos 404 in 112ms
+ PATCH /api/todos/1 404 in 135ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1738ms (1151 modules)
+ GET / 307 in 2517ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 1442ms (708 modules)
+ GET /login 200 in 2203ms
+ GET /dashboard/staff 200 in 429ms
+ POST /api/auth/signup 201 in 3336ms
+ POST /api/auth/login 200 in 523ms
+ PATCH /api/password 200 in 1869ms
+ GET /api/auth/permissions 200 in 284ms
+ POST /api/patients 201 in 1672ms
+ POST /api/staff 201 in 1056ms
+ GET /api/staff 200 in 327ms
+ POST /api/auth/login 200 in 542ms
+ GET /api/patients 403 in 191ms
+ PATCH /api/password 200 in 887ms
+ GET /api/auth/permissions 200 in 413ms
+ GET /api/dashboard 200 in 1108ms
+ GET /api/patients 200 in 472ms
+ GET /api/settings 403 in 320ms
+ GET /api/services 403 in 470ms
+ GET /api/appointments 403 in 359ms
+ GET /api/clinics 403 in 348ms
+ GET /api/doctors 403 in 380ms
+ GET /api/emergency-alerts 403 in 342ms
+ GET /api/staff 403 in 344ms
+ POST /api/staff 403 in 357ms
+ PATCH /api/staff/9fdcfb71-2bde-4784-878b-560d4ac9b7b6 403 in 352ms
+ GET /api/patients 401 in 49ms
+ GET /api/dashboard 401 in 56ms
+ POST /api/auth/signup 201 in 734ms
+ POST /api/auth/login 200 in 743ms
+ PATCH /api/password 200 in 926ms
+ GET /api/auth/permissions 200 in 293ms
+ POST /api/patients 201 in 597ms
+ GET /api/patients 200 in 317ms
+ GET /api/patients 200 in 450ms
+ GET /api/patients/948f6d33-220e-4725-97ee-b0605d7e17aa 404 in 369ms
+ PATCH /api/patients/948f6d33-220e-4725-97ee-b0605d7e17aa 404 in 313ms
+ DELETE /api/patients/948f6d33-220e-4725-97ee-b0605d7e17aa 404 in 342ms
+ GET /api/staff 200 in 327ms
+ PATCH /api/staff/9fdcfb71-2bde-4784-878b-560d4ac9b7b6 404 in 323ms
+ GET /api/staff/9fdcfb71-2bde-4784-878b-560d4ac9b7b6/permissions 404 in 504ms
+ GET /api/patients 200 in 330ms
+ GET /api/todos 404 in 277ms
+ POST /api/todos 404 in 211ms
+ PATCH /api/todos/1 404 in 175ms
+ GET / 307 in 305ms
+ GET /login 200 in 498ms
+ GET /dashboard/staff 200 in 501ms
+ GET /api/auth/permissions 401 in 85ms
+[?25h

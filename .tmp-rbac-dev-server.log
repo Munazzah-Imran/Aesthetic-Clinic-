@@ -1,0 +1,140 @@
+
+> nextjs-docker-postgres@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.25
+   - Local:        http://localhost:3000
+   - Network:      http://172.21.80.1:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 6.4s
+ ○ Compiling /login ...
+ ✓ Compiled /login in 4s (630 modules)
+ GET /login 200 in 5616ms
+ ○ Compiling /api/auth/signup ...
+ ✓ Compiled /api/auth/signup in 1507ms (655 modules)
+(node:11112) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ POST /api/auth/signup 201 in 3662ms
+ ○ Compiling /api/auth/login ...
+ ✓ Compiled /api/auth/login in 1010ms (736 modules)
+ POST /api/auth/login 200 in 1632ms
+ ○ Compiling /api/password ...
+ ✓ Compiled /api/password in 859ms (743 modules)
+ PATCH /api/password 200 in 2961ms
+ ○ Compiling /api/auth/permissions ...
+ ✓ Compiled /api/auth/permissions in 961ms (747 modules)
+ GET /api/auth/permissions 200 in 1308ms
+ ○ Compiling /api/patients ...
+ ✓ Compiled /api/patients in 799ms (750 modules)
+ POST /api/patients 201 in 2471ms
+ ○ Compiling /api/staff ...
+ ✓ Compiled /api/staff in 1111ms (753 modules)
+ POST /api/staff 201 in 4714ms
+ GET /api/staff 200 in 340ms
+ POST /api/auth/login 200 in 459ms
+ GET /api/patients 403 in 192ms
+ PATCH /api/password 200 in 925ms
+ GET /api/auth/permissions 200 in 373ms
+ ○ Compiling /api/dashboard ...
+ ✓ Compiled /api/dashboard in 1108ms (756 modules)
+ GET /api/dashboard 200 in 2334ms
+ GET /api/patients 200 in 423ms
+ ○ Compiling /api/settings ...
+ ✓ Compiled /api/settings in 853ms (758 modules)
+ GET /api/settings 403 in 1474ms
+ ○ Compiling /api/services ...
+ ✓ Compiled /api/services in 657ms (762 modules)
+ GET /api/services 403 in 1248ms
+ ○ Compiling /api/appointments ...
+ ✓ Compiled /api/appointments in 655ms (768 modules)
+ GET /api/appointments 403 in 1221ms
+ ○ Compiling /api/clinics ...
+ ✓ Compiled /api/clinics in 707ms (772 modules)
+ GET /api/clinics 403 in 1121ms
+ ○ Compiling /api/doctors ...
+ ✓ Compiled /api/doctors in 873ms (775 modules)
+ GET /api/doctors 403 in 1351ms
+ ○ Compiling /api/emergency-alerts ...
+ ✓ Compiled /api/emergency-alerts in 809ms (779 modules)
+ GET /api/emergency-alerts 403 in 1599ms
+ GET /api/staff 403 in 379ms
+ POST /api/staff 403 in 372ms
+ ○ Compiling /api/staff/[id] ...
+ ✓ Compiled /api/staff/[id] in 1385ms (781 modules)
+ PATCH /api/staff/ad5e7718-ffbd-4a2a-b988-c21b2fa197be 403 in 6873ms
+ GET /api/patients 401 in 117ms
+ GET /api/dashboard 401 in 98ms
+ POST /api/auth/signup 201 in 764ms
+ POST /api/auth/login 200 in 661ms
+ PATCH /api/password 200 in 2552ms
+ GET /api/auth/permissions 200 in 305ms
+ POST /api/patients 201 in 1637ms
+ GET /api/patients 200 in 297ms
+ GET /api/patients 200 in 428ms
+ ○ Compiling /api/patients/[id] ...
+ ✓ Compiled /api/patients/[id] in 1337ms (783 modules)
+ GET /api/patients/22c9465d-0999-4363-8d2a-8e98c7e9f18f 404 in 3818ms
+ PATCH /api/patients/22c9465d-0999-4363-8d2a-8e98c7e9f18f 404 in 331ms
+ DELETE /api/patients/22c9465d-0999-4363-8d2a-8e98c7e9f18f 404 in 354ms
+ GET /api/staff 200 in 1273ms
+ PATCH /api/staff/ad5e7718-ffbd-4a2a-b988-c21b2fa197be 404 in 349ms
+ ○ Compiling /api/staff/[id]/permissions ...
+ ✓ Compiled /api/staff/[id]/permissions in 1224ms (785 modules)
+ GET /api/staff/ad5e7718-ffbd-4a2a-b988-c21b2fa197be/permissions 404 in 5035ms
+ GET /api/patients 200 in 353ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1490ms (786 modules)
+ GET /api/todos 404 in 2106ms
+ POST /api/todos 404 in 125ms
+ PATCH /api/todos/1 404 in 102ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1729ms (796 modules)
+ GET / 307 in 2351ms
+ GET /login 200 in 291ms
+ ○ Compiling /dashboard/staff ...
+ ✓ Compiled /dashboard/staff in 4.2s (907 modules)
+ GET /dashboard/staff 200 in 6321ms
+ GET /api/auth/permissions 200 in 978ms
+ ○ Compiling /api/auth/me ...
+ ✓ Compiled /api/auth/me in 2.9s (909 modules)
+ GET /api/auth/me 200 in 3406ms
+ GET /api/auth/me 200 in 250ms
+ GET /api/staff 200 in 576ms
+ GET /login 200 in 616ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 2.6s (938 modules)
+ GET /dashboard 200 in 3333ms
+ GET /api/auth/permissions 200 in 389ms
+ GET /api/auth/me 200 in 258ms
+ GET /api/auth/me 200 in 291ms
+ ○ Compiling /dashboard/settings ...
+ GET /api/dashboard 200 in 1770ms
+ GET /api/dashboard 200 in 3012ms
+ ✓ Compiled /dashboard/settings in 2.7s (965 modules)
+ GET /dashboard/settings 200 in 3437ms
+ GET /api/auth/permissions 200 in 439ms
+ GET /api/auth/me 200 in 256ms
+ GET /api/auth/me 200 in 228ms
+ ○ Compiling /dashboard/services ...
+ ✓ Compiled /dashboard/services in 3s (977 modules)
+ GET /dashboard/services 200 in 3649ms
+ GET /api/auth/permissions 200 in 433ms
+ GET /api/auth/me 200 in 228ms
+ GET /api/auth/me 200 in 354ms
+ ○ Compiling /dashboard/patients ...
+ ✓ Compiled /dashboard/patients in 3s (980 modules)
+ GET /dashboard/patients 200 in 3582ms
+ GET /api/auth/permissions 200 in 387ms
+ GET /api/auth/me 200 in 271ms
+ GET /api/auth/me 200 in 304ms
+ GET /api/patients 200 in 475ms
+ GET /api/patients 200 in 407ms

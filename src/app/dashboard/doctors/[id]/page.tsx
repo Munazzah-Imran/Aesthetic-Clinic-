@@ -8,6 +8,7 @@ import Sidebar from "@/components/dashboard/Sidebar";
 import TopNavbar from "@/components/dashboard/TopNavbar";
 import DoctorProfileForm, {
   EMPTY_DOCTOR_PROFILE,
+  type DoctorBranchOption,
   type DoctorProfileValues,
 } from "@/components/dashboard/DoctorProfileForm";
 import {
@@ -57,7 +58,23 @@ function mapProfile(row: Record<string, unknown>): DoctorProfileValues {
     phone: str("phone"),
     email: str("email"),
     languages: str("languages"),
+    clinicId: str("clinic_id"),
   };
+}
+
+/** Branch options come back alongside the profile (same business only). */
+function mapBranches(row: Record<string, unknown>): DoctorBranchOption[] {
+  if (!Array.isArray(row.branches)) return [];
+  return row.branches
+    .filter(
+      (b): b is Record<string, unknown> =>
+        !!b && typeof b === "object" && typeof (b as Record<string, unknown>).id === "string"
+    )
+    .map((b) => ({
+      id: b.id as string,
+      clinic_name: typeof b.clinic_name === "string" ? b.clinic_name : "",
+      city: typeof b.city === "string" ? b.city : "",
+    }));
 }
 
 /**
@@ -83,6 +100,7 @@ export default function DoctorProfilePage() {
     professionalTitle: string | null;
     status: string;
   } | null>(null);
+  const [branches, setBranches] = useState<DoctorBranchOption[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
   const [notFound, setNotFound] = useState(false);
@@ -131,6 +149,7 @@ export default function DoctorProfilePage() {
       // New doctor (no profile yet) -> fresh empty form; existing -> this
       // doctor's row only.
       setValues(profileResult.data ? mapProfile(profileResult.data) : EMPTY_DOCTOR_PROFILE);
+      setBranches(profileResult.data ? mapBranches(profileResult.data) : []);
 
       // Consultation schedule lives on the doctor row, not the profile.
       const d = doctorResult.data;
@@ -332,6 +351,7 @@ export default function DoctorProfilePage() {
                   setSchedule((prev) => ({ ...prev, [key]: value }))
                 }
                 onScheduleErrors={(next) => setScheduleErrors(next)}
+                branches={branches}
               />
             </div>
           )}

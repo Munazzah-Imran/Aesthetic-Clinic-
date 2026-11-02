@@ -97,8 +97,9 @@ async function main(): Promise<void> {
       professional_interests TEXT,
       areas_of_expertise TEXT,
       phone          VARCHAR(30),
-      email          VARCHAR(255),
-      languages      VARCHAR(255),
+      email           VARCHAR(255),
+      languages       VARCHAR(255),
+      clinic_id      UUID REFERENCES clinic(id) ON DELETE SET NULL,
       created_at     TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
       updated_at     TIMESTAMPTZ  NOT NULL DEFAULT NOW()
     );

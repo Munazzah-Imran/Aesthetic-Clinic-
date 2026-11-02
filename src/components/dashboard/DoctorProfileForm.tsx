@@ -11,6 +11,14 @@ import ConsultationScheduleFields, {
   EMPTY_SCHEDULE,
   type ScheduleValues,
 } from "@/components/dashboard/ConsultationScheduleFields";
+import FormSelect from "@/components/dashboard/FormSelect";
+
+/** Branch (city) option for the "Branch (City)" dropdown — from the clinic table. */
+export type DoctorBranchOption = {
+  id: string;
+  clinic_name: string;
+  city: string;
+};
 
 export type DoctorProfileValues = {
   photoUrl: string;
@@ -27,6 +35,8 @@ export type DoctorProfileValues = {
   phone: string;
   email: string;
   languages: string;
+  /** Selected branch (clinic.id) — "" = not selected yet. */
+  clinicId: string;
 };
 
 /** Consultation schedule lives alongside the profile values (see DB columns). */
@@ -47,6 +57,7 @@ export const EMPTY_DOCTOR_PROFILE: DoctorProfileValues = {
   phone: "",
   email: "",
   languages: "",
+  clinicId: "",
 };
 
 type DoctorProfileFormProps = {
@@ -61,6 +72,8 @@ type DoctorProfileFormProps = {
   scheduleErrors: Partial<Record<keyof ScheduleValues, string | undefined>>;
   onScheduleChange: <K extends keyof ScheduleValues>(key: K, value: ScheduleValues[K]) => void;
   onScheduleErrors: (errors: Partial<Record<keyof ScheduleValues, string | undefined>>) => void;
+  /** Branch (city) options loaded with the profile (same business only). */
+  branches: DoctorBranchOption[];
 };
 
 /**
@@ -137,6 +150,7 @@ export default function DoctorProfileForm({
   scheduleErrors,
   onScheduleChange,
   onScheduleErrors,
+  branches,
 }: DoctorProfileFormProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [topError, setTopError] = useState<string | null>(null);
@@ -434,6 +448,31 @@ export default function DoctorProfileForm({
             placeholder="English, Urdu"
             maxLength={255}
             className={inputClass(!!errors.languages)}
+          />
+        </Field>
+
+        {/* Branch (City) — which city's branch this doctor works at. */}
+        <Field
+          label="Branch (City)"
+          error={errors.clinicId}
+          hint={
+            branches.length === 0
+              ? "No active branches yet — add a clinic first."
+              : undefined
+          }
+        >
+          <FormSelect
+            id="doctor-branch"
+            value={values.clinicId}
+            onChange={(v) => set("clinicId", v)}
+            placeholder="Select branch (city)"
+            hasError={!!errors.clinicId}
+            disabled={branches.length === 0}
+            options={branches.map((b) => ({
+              value: b.id,
+              label: b.city,
+              hint: b.clinic_name,
+            }))}
           />
         </Field>
       </section>

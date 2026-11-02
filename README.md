@@ -5,10 +5,10 @@ container with a Postgres 17 database, wired together with Docker Compose.
 
 ## What's inside
 
-- `src/app` — App Router pages and `/api/todos` REST routes
+- `src/app` — App Router pages and the `/api/*` REST routes (permission-guarded)
 - `src/lib/db.ts` — singleton `pg` Pool (respects `DATABASE_URL`)
-- `src/components/TodoList.tsx` — client component that reads/writes todos
-- `docker/postgres/init.sql` — creates a `todos` table on first DB startup
+- `src/lib/permissions.ts` + `src/lib/rbac.ts` — permission catalog and server-side RBAC guards
+- `docker/postgres/init.sql` — base schema on first DB startup
 - `Dockerfile` — multi-stage build → slim standalone production image
 - `docker-compose.yml` — `app` + `db` services (prod-style)
 - `docker-compose.dev.yml` — overlay with hot-reload dev server
